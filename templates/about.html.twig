@@ -4,19 +4,36 @@
 
 {% block body %}
 
-    <main class="main about">
-        <h1>About</h1>
-        
-        <p>
-            Kursen Objektorienterade webbteknologier (mvc) <br>
-            handlar om objektorienterad PHP med ramverk, <br>
-            enhetstestning, kodkvalitet och databaskopplingar. <br>
-            Syftet med kursen är att lära ut objektorienterade webbteknologier. <br>
-        </p>
+    <div class="two-col-layout">
+        <main class="main about">
+            <h1>About</h1>
+            
+            <p>
+                Kursen Objektorienterade webbteknologier (mvc) <br>
+                handlar om objektorienterad PHP med ramverk, <br>
+                enhetstestning, kodkvalitet och databaskopplingar. <br>
+                Syftet med kursen är att lära ut objektorienterade webbteknologier. <br>
+            </p>
 
-        <a href="https://github.com/dbwebb-se/mvc" class="about-button">Kursrepo</a>
-        <a href="https://github.com/mapg23/mvc/tree/main" class="about-button">Repo för denna sidan</a>
 
-    </main>
+        </main>
+
+        <aside class="aside about-side">
+
+            <div>
+                <a href="https://github.com/dbwebb-se/mvc" class="about-button">Kursrepo</a>
+                <a href="https://github.com/mapg23/mvc/tree/main" class="about-button">Repo för denna sidan</a>
+            </div>
+    
+            <div class="image-wrapper">
+                <img src="{{ asset('img/php.png')}}" alt="Profile picture">
+            </div>
+
+        </aside>
+
+    </div>
 
 {% endblock %}
+
+{# 
+Skapa en route /about som berättar om kursen mvc och dess syfte. Länka till kursens Git-repo. Lägg till en representativ bild. Skapa ytterligare en länk som leder till ditt egna GitHub-repo. Sidan skall ha två kolumner #}

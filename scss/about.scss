@@ -1,17 +1,59 @@
+.two-col-layout {
+    display: flex;
+    gap: 1rem;
+
+    .about {
+        width: 60%;
+    }
+
+    .about-side {
+        width: 40%;
+        background-color: #333;
+    
+    }
+}
+
 .about {
+    h1 {
+        font-family: $serif;
+    }
+
+    p {
+        font-family: $sans-serif;
+    }
+}
+
+.about-side {
+    padding: 1em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .image-wrapper {
+        width: 90%;
+        height: 90%;
+    }
 
     .about-button {
         padding: .5em;
-
+    
         color: white;
         text-decoration: none;
         
         border: 2px solid white;
         border-radius: 10px;
     }
-
+    
     .about-button:hover{
         border: 2px solid #b0b0b0;
         color: #b0b0b0;
     }
+    
 }
