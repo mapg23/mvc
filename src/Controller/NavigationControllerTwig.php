@@ -24,6 +24,14 @@ class NavigationControllerTwig extends AbstractController
     public function report() : Response
     {
         return $this->render("report.html.twig");
-        
+    }
+
+    #[Route("/lucky", name: "lucky")]
+    public function lucky() : Response
+    {
+        $number = random_int(0, 100);
+        $data = ['number' => $number];
+
+        return $this->render("lucky.html.twig", $data);
     }
 }

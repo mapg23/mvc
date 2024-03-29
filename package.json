@@ -15,8 +15,8 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress",
-        "sass": "sass scss/style.scss assets/styles/app.css",
+        "build": "encore production --watch --progress",
+        "sass": "sass --watch scss/style.scss assets/styles/app.css",
         "build-sass": "npm run sass & npm run build"
     },
     "dependencies": {
