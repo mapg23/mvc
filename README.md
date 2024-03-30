@@ -1,5 +1,6 @@
 # MVC Report site
 
+![alt text](/public/img/github-picture.jpg)
 
 ## Requirements
 PHP >= 8.2
