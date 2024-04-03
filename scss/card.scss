@@ -1,0 +1,51 @@
+.two-col-layout {
+    .card-home {
+        width: 50%;
+    }
+
+    .card-aside {
+        width: 50%;
+    }
+}
+
+.card-home {
+    .card-paths a{
+        padding: .5em;
+    
+        color: white;
+        text-decoration: none;
+        
+        border: 2px solid white;
+        border-radius: 10px;
+    }
+
+    .card-paths a:hover {
+        border: 2px solid #b0b0b0;
+        color: #b0b0b0;
+    }
+}
+
+.card-aside {
+    padding: .2em;
+    background-color: #333;
+    
+    .card-uml {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+.card-wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+
+    justify-content: center;
+    max-width: 50%;
+
+    .card-item {
+        font-size: 3em;
+        padding: .2em;
+    }
+}

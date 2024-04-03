@@ -3,14 +3,31 @@
 {% block title %}Card{% endblock %}
 
 {% block body %}
+<div class="two-col-layout">
 
-<main class="main card">
-    <h1>Card</h1>
+    <main class="main card-home">
+        <h1>Card</h1>
 
-    <a href="{{ path('deck') }}">Deck</a>
-    <a href="{{ path('shuffle') }}">Shuffle</a>
-    <a href="{{ path('draw') }}">Draw cards</a>
+        <p>
+            Klasserna som används är Card, CardGraphic, CardHand och DeckOfCards. <br>
+            Card klassen fungerar som en bas klass för klassen CardGraphic, denna klassen är vad som ska representera ett kort.
+            Klassen DeckOfCards ska representera kortleken, denna klass håller som mest 52 CardGraphic objekt i en array. <br>
+            CardHand klassen är en klass som ska representera en spelares kort, där korten är av klass CardGraphic.
+        </p>
 
-</main>
+        <div class="card-paths">
+            <a href="{{ path('deck') }}">Deck</a>
+            <a href="{{ path('shuffle') }}">Shuffle</a>
+            <a href="{{ path('draw') }}">Draw cards</a>
+        </div>
+    </main>
+
+    <aside class="aside card-aside">
+
+        <img class="card-uml" src="{{ asset('img/uml.png')}}" alt="uml diagram">
+
+    </aside>
+
+</div>
 
 {% endblock %}

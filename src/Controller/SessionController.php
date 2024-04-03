@@ -17,7 +17,7 @@ class SessionController extends AbstractController
     ): Response
     {
         $data = [
-            "session" => print_r($session->all(), true),
+            "session" => $session->all(),
         ];
 
         return $this->render("session.html.twig", $data);

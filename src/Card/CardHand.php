@@ -6,7 +6,12 @@ use App\Card\CardGraphic;
 
 class CardHand
 {
-    private $hand = [];
+    private $hand = null;
+
+    public function __construct()
+    {
+        $this->hand = [];
+    }
 
     public function add(CardGraphic $card) {
         $this->hand[] = $card;

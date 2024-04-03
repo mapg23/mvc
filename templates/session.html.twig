@@ -7,7 +7,9 @@
     <main class="main home">
 
         <pre>
-            {{session}}
+            {% for items in session %}
+                {{ dump(items) }}
+            {% endfor%}
         </pre>
 
         {{ include('flash.html.twig') }}

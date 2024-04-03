@@ -4,14 +4,17 @@
 
 {% block body %}
 
-<main class="main card">
-    <h1>Deck</h1>
+<main class="main card-deck">
+        <h1>Deck</h1>
 
-    {% for card in deck %}
-    <div class="card-container">
-        {{card.getAsString() }}
+    <div class="card-wrapper">
+        {% for card in deck %}
+        <div class="card-item">
+            {{card.getAsString() }}
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+
 
 </main>
 

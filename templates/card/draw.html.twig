@@ -9,12 +9,13 @@
 
     <p>Cards remaining: {{count}}</p>
 
-    {% for card in cards%}
-    <div class="card-container">
-        {{card.getAsString()}}
+    <div class="card-wrapper">
+        {% for card in cards%}
+        <div class="card-item">
+            {{card.getAsString()}}
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-
 </main>
 
 {% endblock %}
