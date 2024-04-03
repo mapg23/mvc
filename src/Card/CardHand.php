@@ -13,7 +13,8 @@ class CardHand
         $this->hand = [];
     }
 
-    public function add(CardGraphic $card) {
+    public function add(CardGraphic $card)
+    {
         $this->hand[] = $card;
     }
 

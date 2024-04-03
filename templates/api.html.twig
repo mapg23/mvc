@@ -6,9 +6,62 @@
 
     <main class="main api">
 
-        <h3>JSON Routes</h3>
-    
-        <a href="{{ path('quote') }}">api/quotes</a>
+        <h1>JSON Routes</h1>
+
+        <div class="api-wrapper">
+
+            <div class="api-route">
+                <h1>Quote</h1>
+                <p>
+                    Denna api routen går till dagens quote,
+                    där visas en quote med dagens datum, samt en tidsstämpel.
+                </p>
+                <a href="{{ path('quote') }}">Go to</a>
+            </div>
+
+            <div class="api-route">
+                <h1>GET api/deck</h1>
+                <p>
+                    Denna api routen går till Kortleken, sorterad på både färg och värde.
+                </p>
+                <a href="{{ path('api_deck') }}">Go to</a>
+            </div>
+
+            <div class="api-route">
+                <h1>POST api/deck/shuffle</h1>
+
+                <p>
+                    Denna api routen returnerar en shufflad kortlek, den blandade kortleken sparas även i session.
+                </p>
+                <a href="{{ path('api_deck_shuffle') }}">Go to</a>
+            </div>
+
+            <div class="api-route">
+                <h1>POST api/deck/draw</h1>
+
+                <p>
+                    Denna api routen drar ett kort från kortleken
+                    och visar upp en JSON struktur samt antalet kort som är kvar i kortleken,
+                    kortleken sparas i session.
+                </p>
+                <a href="{{ path('api_deck_draw') }}">Go to</a>
+            </div>
+
+            <div class="api-route">
+                <h1>POST api/deck/draw:number</h1>
+
+                <p>
+                    Denna api routen drar x antal kort från kortleken
+                    och visar upp en JSON struktur samt antalet kort som är kvar i kortleken,
+                    kortleken sparas i session.
+                </p>
+                <a href="{{ path('api_deck_draw') }}">Go to</a>
+            </div>
+
+            <div class="api-route"></div>
+
+        </div>
+
     </main>
 
 {% endblock %}

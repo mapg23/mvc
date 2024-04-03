@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Card\DeckOfCards;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AbstractController
@@ -36,5 +39,57 @@ class ApiController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+    }
+
+    #[Route("/api/deck", name: "api_deck", methods: ["GET"])]
+    public function api_deck(
+        SessionInterface $session
+    ) : Response
+    {
+        $deck = new DeckOfCards();
+
+        if ($session->has("deck")) {
+            $deck->set_deck($session->get("deck"));
+        }
+
+        $deck->sort_cards();
+
+        $data = [ $deck->get_deck() ];
+
+        $response = new Response();
+        $response->setContent(json_encode($data));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    #[Route("/api/deck/shuffle", name: "api_deck_shuffle", methods: ["GET", "POST"])]
+    public function api_deck_shuffle(
+        SessionInterface $session
+    ) :Response
+    {
+        $deck = new DeckOfCards();
+
+        if ($session->has("deck")) {
+            $deck->set_deck($session->get("deck"));
+        }
+
+        $deck->suffle_deck();
+
+        $data = [ $deck->get_deck() ];
+
+        $response = new Response();
+        $response->setContent(json_encode($data));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    #[Route("/api/deck/draw", name: "api_deck_draw", methods: ["GET", "POST"])]
+    public function api_deck_draw(
+        SessionInterface $session
+    ) : Response
+    {
+
     }
 }

@@ -187,6 +187,44 @@
   font-size: 3em;
   padding: 0.2em;
 }
+.card-wrapper .hearts, .card-wrapper .diamonds {
+  color: red;
+}
+
+.api h1 {
+  font-family: "Zilla Slab", serif;
+}
+
+.api-wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+  gap: 2em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.api-wrapper .api-route {
+  padding: 1em;
+  border: 2px solid white;
+  width: 500px;
+}
+.api-wrapper .api-route h1 {
+  font-family: "Zilla Slab", serif;
+}
+.api-wrapper .api-route p {
+  font-family: "Nunito", sans-serif;
+}
+.api-wrapper .api-route a {
+  padding: 0.5em;
+  color: white;
+  text-decoration: none;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+.api-wrapper .api-route a:hover {
+  border: 2px solid #b0b0b0;
+  color: #b0b0b0;
+}
 
 body, html {
   background-color: #202020;

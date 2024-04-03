@@ -19,7 +19,7 @@ class DeckOfCards
         }
     }
 
-    public function draw_card(int $ammount = 1): Array 
+    public function draw_card(int $ammount = 1): array
     {
         $random_keys = array_rand($this->deck, $ammount);
         $cards = [];
@@ -32,7 +32,7 @@ class DeckOfCards
             $cards[] = $this->deck[$key];
             unset($this->deck[$key]);
         }
-        
+
         return $cards;
     }
 
@@ -41,12 +41,12 @@ class DeckOfCards
         return count($this->deck);
     }
 
-    public function get_deck(): Array
+    public function get_deck(): array
     {
         return $this->deck;
     }
 
-    public function set_deck(Array $deck): Void
+    public function set_deck(array $deck): Void
     {
         $this->deck = $deck;
     }
@@ -54,5 +54,20 @@ class DeckOfCards
     public function suffle_deck(): Void
     {
         shuffle($this->deck);
+    }
+
+    public function sort_cards()
+    {
+        usort($this->deck, array($this, 'sorting'));
+    }
+
+    public static function sorting($a, $b) {
+        $comparisson = strcmp($a->get_type(), $b->get_type());
+
+        if ($comparisson != 0) {
+            return $comparisson;
+        }
+
+        return $a->get_value() - $b->get_value();
     }
 }

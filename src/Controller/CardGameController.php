@@ -22,14 +22,15 @@ class CardGameController extends AbstractController
     #[Route("/card/deck", name: "deck")]
     public function deck(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
             $deck->set_deck($session->get("deck"));
         }
-        
+
+        $deck->sort_cards();
+
         $session->set("deck", $deck->get_deck());
 
         $data = ["deck" => $deck->get_deck()];
@@ -40,8 +41,7 @@ class CardGameController extends AbstractController
     #[Route("/card/deck/shuffle", name: "shuffle")]
     public function shuffle(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
@@ -51,7 +51,7 @@ class CardGameController extends AbstractController
         if ($deck->get_deck_size() === 0) {
             $deck = new DeckOfCards();
         }
-        
+
         $deck->suffle_deck();
 
 
@@ -67,8 +67,7 @@ class CardGameController extends AbstractController
     #[Route("/card/deck/draw", name: "draw")]
     public function draw(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
@@ -88,10 +87,10 @@ class CardGameController extends AbstractController
     }
 
     #[Route("/card/deck/draw/{num<\d+>}", name: "draw_get")]
-    public function draw_multiple(int $num,
+    public function draw_multiple(
+        int $num,
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,8 +13,7 @@ class SessionController extends AbstractController
     #[Route("/session", name: "session")]
     public function session(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $data = [
             "session" => $session->all(),
         ];
@@ -26,8 +24,7 @@ class SessionController extends AbstractController
     #[Route("/session/delete", name: "delete_session")]
     public function session_delete(
         SessionInterface $session
-    ) : Response
-    {
+    ): Response {
         $session->clear();
 
         $this->addFlash(
