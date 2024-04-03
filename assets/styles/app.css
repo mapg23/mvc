@@ -115,6 +115,16 @@
   max-height: 200px;
 }
 
+.pig input {
+  font-size: 1em;
+}
+.pig h1 {
+  border-bottom: 4px double green;
+}
+.pig .die {
+  font-size: 4em;
+}
+
 body, html {
   background-color: #202020;
 }

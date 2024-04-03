@@ -4,21 +4,20 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route; 
+use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AbstractController
 {
-
     #[Route("/api", name: "api")]
-    public function api() : Response
+    public function api(): Response
     {
         return $this->render("api.html.twig");
     }
 
     #[Route("/api/quote", name: "quote")]
-    public function quote() : Response
+    public function quote(): Response
     {
-        $numb = random_int(0,2);
+        $numb = random_int(0, 2);
 
         $quotes = array(
             "Code dosent lie, comments sometimes do.",
@@ -35,7 +34,7 @@ class ApiController extends AbstractController
         $response = new Response();
         $response->setContent(json_encode($data));
         $response->headers->set('Content-Type', 'application/json');
-        
+
         return $response;
     }
 }
