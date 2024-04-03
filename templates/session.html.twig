@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Session {% endblock %}
+
+{% block body %}
+
+    <main class="main home">
+
+        <pre>
+            {{session}}
+        </pre>
+
+        {{ include('flash.html.twig') }}
+
+    </main>
+
+{% endblock %}

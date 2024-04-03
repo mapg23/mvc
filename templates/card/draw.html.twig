@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Deck{% endblock %}
+
+{% block body %}
+
+<main class="main card">
+    <h1>Draw a card</h1>
+
+    <p>Cards remaining: {{count}}</p>
+
+    {% for card in cards%}
+    <div class="card-container">
+        {{card.getAsString()}}
+    </div>
+    {% endfor %}
+
+</main>
+
+{% endblock %}

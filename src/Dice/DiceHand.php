@@ -42,4 +42,5 @@ class DiceHand
         }
         return $values;
     }
+
 }
