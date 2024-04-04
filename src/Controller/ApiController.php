@@ -44,8 +44,7 @@ class ApiController extends AbstractController
     #[Route("/api/deck", name: "api_deck", methods: ["GET"])]
     public function api_deck(
         SessionInterface $session
-    ) : Response
-    {
+    ): Response {
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
@@ -66,8 +65,7 @@ class ApiController extends AbstractController
     #[Route("/api/deck/shuffle", name: "api_deck_shuffle", methods: ["GET", "POST"])]
     public function api_deck_shuffle(
         SessionInterface $session
-    ) :Response
-    {
+    ): Response {
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
@@ -88,8 +86,55 @@ class ApiController extends AbstractController
     #[Route("/api/deck/draw", name: "api_deck_draw", methods: ["GET", "POST"])]
     public function api_deck_draw(
         SessionInterface $session
-    ) : Response
-    {
+    ): Response {
+        $deck = new DeckOfCards();
 
+        if ($session->has("deck")) {
+            $deck->set_deck($session->get("deck"));
+        }
+
+        $card = $deck->draw_card();
+
+        $session->set("deck", $deck->get_deck());
+
+        $data = [
+            'cards' => $card,
+            "count" => $deck->get_deck_size(),
+        ];
+
+        $response = new Response();
+        $response->setContent(json_encode($data));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+
+
+    #[Route("/api/deck/draw/{number<\d+>}", name: "api_deck_draw_multiple")]
+    public function api_deck_draw_multiple(
+        int $number,
+        SessionInterface $session
+    ): Response {
+        $deck = new DeckOfCards();
+
+        if ($session->has("deck")) {
+            $deck->set_deck($session->get("deck"));
+        }
+
+        $card = $deck->draw_card($number);
+
+        $session->set("deck", $deck->get_deck());
+
+        $data = [
+            'cards' => $card,
+            "Cards remaining" => $deck->get_deck_size()
+        ];
+
+        $response = new Response();
+        $response->setContent(json_encode($data));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }

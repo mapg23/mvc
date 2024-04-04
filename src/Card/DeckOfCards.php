@@ -46,22 +46,23 @@ class DeckOfCards
         return $this->deck;
     }
 
-    public function set_deck(array $deck): Void
+    public function set_deck(array $deck): void
     {
         $this->deck = $deck;
     }
 
-    public function suffle_deck(): Void
+    public function suffle_deck(): void
     {
         shuffle($this->deck);
     }
 
-    public function sort_cards()
+    public function sort_cards(): void
     {
         usort($this->deck, array($this, 'sorting'));
     }
 
-    public static function sorting($a, $b) {
+    public static function sorting($a, $b): int|float
+    {
         $comparisson = strcmp($a->get_type(), $b->get_type());
 
         if ($comparisson != 0) {
