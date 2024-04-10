@@ -26,7 +26,7 @@ class DiceHand
         return count($this->hand);
     }
 
-    /** @return array<int> */
+    /** @return array<int|null> */
     public function getValues(): array
     {
         $values = [];
