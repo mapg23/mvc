@@ -12,12 +12,13 @@
 @import "flash";
 @import "card";
 @import "api";
+@import "doc";
 
 body, html {
     background-color: $background-color;
 }
 
-.main {
+.main, .aside {
     margin: 0 auto;
     padding: 2rem;
     min-height: 525px;

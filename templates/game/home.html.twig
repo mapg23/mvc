@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Black Jack{% endblock %}
+
+{% block body %}
+
+    <main class="main card-home">
+        <h1>Black Jack (1-player version)</h1>
+
+        <p>
+            Black Jack fast endast med en spelare. <br>
+            Spelet går ut på att komma så nära talet 21 som möjligt utan att gå över talet 21. <br>
+            Alla kläda kort är värda 10 poäng, ett ess 🂡 är värt antingen 11 eller 1 poäng. <br>
+            Spelaren och huset kör vart annan runda, med start av spelaren. <br>
+            Om både dealern och spelaren får lika många poäng, blir det lika, annars är det högst kort under 21 som vinner.
+
+        </p>
+
+        <div class="card-paths">
+            <a href="{{ path('deck') }}">Starta spel</a>
+            <a href="{{ path('doc') }}">Documentation</a>
+        </div>
+    </main>
+
+
+{% endblock %}

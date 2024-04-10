@@ -1,0 +1,71 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Documentation{% endblock %}
+
+{% block body %}
+
+<div class="two-col-layout">
+
+    <main class="main doc">
+        <h1>Documentation av Black Jack</h1>
+
+
+        <p>
+            Vanlig kod
+        </p>
+
+        <h2>Klassen Game</h2>
+        <code>
+        <pre class="code-block">
+            
+            Class Game extends DeckOfCards
+            {
+            &emsp;
+                private array $deck;
+
+                private bool $playersTurn = false;
+
+                private array $playerHand;
+                private array $computerHand;
+
+                public function __construct()
+                {
+                &emsp;    parent::__construct();
+                }
+
+                public function drawCard(int $amount = 1) {
+                &emsp;  $card = parent::drawCard($ammount);
+
+                &emsp; if (playersTurn is false) {
+                &emsp;&emsp; computerHand adds a card
+                &emsp; } 
+                &emsp; else {
+                &emsp;&emsp; playerHand adds a card
+                &emsp;} 
+                }
+
+                public function CheckScore() {
+
+                }
+
+            &emsp;
+            }
+
+        </pre>
+        </code>
+
+    </main>
+
+    <aside class="aside doc">
+        <h1>Flödesschema</h1>
+
+        <img class="doc-img" src="{{ asset('img/flowchart.png')}}" alt="Flowchart">
+
+        <h1>UML diagram</h1>
+
+        <div class="temp-picture"></div>
+        
+    </aside>
+</div>
+
+{% endblock %}
