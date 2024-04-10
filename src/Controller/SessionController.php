@@ -22,7 +22,7 @@ class SessionController extends AbstractController
     }
 
     #[Route("/session/delete", name: "delete_session")]
-    public function session_delete(
+    public function sessionDelete(
         SessionInterface $session
     ): Response {
         $session->clear();

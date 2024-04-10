@@ -6,8 +6,11 @@ use App\Card\CardGraphic;
 
 class DeckOfCards
 {
-    protected $deck = [];
-    private $types = ["spades", "hearts", "diamonds", "clubs"];
+    /** @var array<CardGraphic> */
+    protected array $deck = [];
+
+    /** @var array<string> */
+    private array $types = ["spades", "hearts", "diamonds", "clubs"];
 
     public function __construct()
     {
@@ -19,16 +22,17 @@ class DeckOfCards
         }
     }
 
-    public function draw_card(int $ammount = 1): array
+    /** @return array<CardGraphic> */
+    public function drawCard(int $ammount = 1): array
     {
-        $random_keys = array_rand($this->deck, $ammount);
+        $randomKeys = array_rand($this->deck, $ammount);
         $cards = [];
 
-        if (gettype($random_keys) === "integer") {
-            $random_keys = [$random_keys];
+        if (gettype($randomKeys) === "integer" || gettype($randomKeys) === "string") {
+            $randomKeys = [$randomKeys];
         }
 
-        foreach($random_keys as $key) {
+        foreach($randomKeys as $key) {
             $cards[] = $this->deck[$key];
             unset($this->deck[$key]);
         }
@@ -36,39 +40,45 @@ class DeckOfCards
         return $cards;
     }
 
-    public function get_deck_size(): int
+    public function getDeckSize(): int
     {
         return count($this->deck);
     }
 
-    public function get_deck(): array
+    /** @return array<CardGraphic> */
+    public function getDeck(): array
     {
         return $this->deck;
     }
 
-    public function set_deck(array $deck): void
+    /**
+     * @param array<CardGraphic> $deck
+     */
+    public function setDeck(array $deck): void
     {
         $this->deck = $deck;
     }
 
-    public function suffle_deck(): void
+    public function suffleDeck(): void
     {
         shuffle($this->deck);
     }
 
-    public function sort_cards(): void
+    public function sortCards(): void
     {
-        usort($this->deck, array($this, 'sorting'));
+        /** @phpstan-ignore-next-line */
+        usort($this->deck, array($this, "sorting"));
     }
 
-    public static function sorting($a, $b): int|float
+    /** @return int|float */
+    public static function sorting(CardGraphic $first, CardGraphic $second): int|float
     {
-        $comparisson = strcmp($a->get_type(), $b->get_type());
+        $comparisson = strcmp($first->getType(), $second->getType());
 
         if ($comparisson != 0) {
             return $comparisson;
         }
 
-        return $a->get_value() - $b->get_value();
+        return $first->getValue() - $second->getValue();
     }
 }

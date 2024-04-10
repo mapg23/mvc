@@ -4,7 +4,8 @@ namespace App\Card;
 
 class CardGraphic extends Card
 {
-    private $representation = [
+    /** @var array<string, array<string>> */
+    private array $representation = [
         "spades" => [
             '🂡','🂢','🂣','🂤',
             '🂥','🂦','🂧','🂨',

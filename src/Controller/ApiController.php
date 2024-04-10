@@ -35,104 +35,109 @@ class ApiController extends AbstractController
         ];
 
         $response = new Response();
-        $response->setContent(json_encode($data));
+
+        $parsedData = json_encode($data) ?: null;
+
+        $response->setContent($parsedData);
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
     }
 
     #[Route("/api/deck", name: "api_deck", methods: ["GET"])]
-    public function api_deck(
+    public function apiDeck(
         SessionInterface $session
     ): Response {
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
-            $deck->set_deck($session->get("deck"));
+            $deck->setDeck($session->get("deck"));
         }
 
-        $deck->sort_cards();
+        $deck->sortCards();
 
-        $data = [ $deck->get_deck() ];
+        $data = [ $deck->getDeck() ];
 
         $response = new Response();
-        $response->setContent(json_encode($data));
+        $parsedData = json_encode($data) ?: null;
+        $response->setContent($parsedData);
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
     }
 
     #[Route("/api/deck/shuffle", name: "api_deck_shuffle", methods: ["GET", "POST"])]
-    public function api_deck_shuffle(
+    public function apiDeckShuffle(
         SessionInterface $session
     ): Response {
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
-            $deck->set_deck($session->get("deck"));
+            $deck->setDeck($session->get("deck"));
         }
 
-        $deck->suffle_deck();
+        $deck->suffleDeck();
 
-        $data = [ $deck->get_deck() ];
+        $data = [ $deck->getDeck() ];
 
         $response = new Response();
-        $response->setContent(json_encode($data));
+        $parsedData = json_encode($data) ?: null;
+        $response->setContent($parsedData);
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
     }
 
     #[Route("/api/deck/draw", name: "api_deck_draw", methods: ["GET", "POST"])]
-    public function api_deck_draw(
+    public function apiDeckDraw(
         SessionInterface $session
     ): Response {
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
-            $deck->set_deck($session->get("deck"));
+            $deck->setDeck($session->get("deck"));
         }
 
-        $card = $deck->draw_card();
+        $card = $deck->drawCard();
 
-        $session->set("deck", $deck->get_deck());
+        $session->set("deck", $deck->getDeck());
 
         $data = [
             'cards' => $card,
-            "count" => $deck->get_deck_size(),
+            "count" => $deck->getDeckSize(),
         ];
 
         $response = new Response();
-        $response->setContent(json_encode($data));
+        $parsedData = json_encode($data) ?: null;
+        $response->setContent($parsedData);
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
     }
 
-
-
     #[Route("/api/deck/draw/{number<\d+>}", name: "api_deck_draw_multiple")]
-    public function api_deck_draw_multiple(
+    public function apiDeckDrawMultiple(
         int $number,
         SessionInterface $session
     ): Response {
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
-            $deck->set_deck($session->get("deck"));
+            $deck->setDeck($session->get("deck"));
         }
 
-        $card = $deck->draw_card($number);
+        $card = $deck->drawCard($number);
 
-        $session->set("deck", $deck->get_deck());
+        $session->set("deck", $deck->getDeck());
 
         $data = [
             'cards' => $card,
-            "Cards remaining" => $deck->get_deck_size()
+            "Cards remaining" => $deck->getDeckSize()
         ];
 
         $response = new Response();
-        $response->setContent(json_encode($data));
+        $parsedData = json_encode($data) ?: null;
+        $response->setContent($parsedData);
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;

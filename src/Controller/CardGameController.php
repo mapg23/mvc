@@ -26,14 +26,14 @@ class CardGameController extends AbstractController
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
-            $deck->set_deck($session->get("deck"));
+            $deck->setDeck($session->get("deck"));
         }
 
-        $deck->sort_cards();
+        $deck->sortCards();
 
-        $session->set("deck", $deck->get_deck());
+        $session->set("deck", $deck->getDeck());
 
-        $data = ["deck" => $deck->get_deck()];
+        $data = ["deck" => $deck->getDeck()];
 
         return $this->render("card/deck.html.twig", $data);
     }
@@ -45,20 +45,20 @@ class CardGameController extends AbstractController
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
-            $deck->set_deck($session->get("deck"));
+            $deck->setDeck($session->get("deck"));
         }
 
-        if ($deck->get_deck_size() === 0) {
+        if ($deck->getDeckSize() === 0) {
             $deck = new DeckOfCards();
         }
 
-        $deck->suffle_deck();
+        $deck->suffleDeck();
 
 
-        $session->set("deck", $deck->get_deck());
+        $session->set("deck", $deck->getDeck());
 
         $data = [
-            "deck" => $deck->get_deck()
+            "deck" => $deck->getDeck()
         ];
 
         return $this->render("card/deck.html.twig", $data);
@@ -71,39 +71,39 @@ class CardGameController extends AbstractController
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
-            $deck->set_deck($session->get("deck"));
+            $deck->setDeck($session->get("deck"));
         }
 
-        $card = $deck->draw_card();
+        $card = $deck->drawCard();
 
-        $session->set("deck", $deck->get_deck());
+        $session->set("deck", $deck->getDeck());
 
         $data = [
             'cards' => $card,
-            "count" => $deck->get_deck_size(),
+            "count" => $deck->getDeckSize(),
         ];
 
         return $this->render("card/draw.html.twig", $data);
     }
 
     #[Route("/card/deck/draw/{num<\d+>}", name: "draw_get")]
-    public function draw_multiple(
+    public function drawMultiple(
         int $num,
         SessionInterface $session
     ): Response {
         $deck = new DeckOfCards();
 
         if ($session->has("deck")) {
-            $deck->set_deck($session->get("deck"));
+            $deck->setDeck($session->get("deck"));
         }
 
-        $card = $deck->draw_card($num);
+        $card = $deck->drawCard($num);
 
-        $session->set("deck", $deck->get_deck());
+        $session->set("deck", $deck->getDeck());
 
         $data = [
             'cards' => $card,
-            "count" => $deck->get_deck_size()
+            "count" => $deck->getDeckSize()
         ];
 
         return $this->render("card/draw.html.twig", $data);

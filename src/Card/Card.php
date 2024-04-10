@@ -4,8 +4,8 @@ namespace App\Card;
 
 class Card
 {
-    public $value;
-    public $type;
+    public int $value;
+    public string $type;
 
     public function __construct(string $type, int $value)
     {
@@ -13,12 +13,12 @@ class Card
         $this->type = $type;
     }
 
-    public function get_type(): string
+    public function getType(): string
     {
         return $this->type;
     }
 
-    public function get_value(): int
+    public function getValue(): int
     {
         return $this->value;
     }

@@ -11,7 +11,7 @@
 
     <div class="card-wrapper">
         {% for card in cards%}
-        <div class="card-item {{card.get_type()}}">
+        <div class="card-item {{card.getType()}}">
             {{card.getAsString()}}
         </div>
         {% endfor %}
