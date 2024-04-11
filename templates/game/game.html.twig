@@ -1,0 +1,60 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Black Jack{% endblock %}
+
+{% block body %}
+    {# <span class="">🂠</span> #}
+
+    <main class="main black-jack-main">
+            <h1>{{ res }}</h1> 
+        <div class="game-area">
+
+
+            <div class="dealer-area">
+                <p>{{c_score}} points</p>
+                
+                {% for card in c_hand %}
+
+                <div class="card-item {{card.getType()}}">
+                    {{card.getAsString() }}
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="player-area">
+                <p>{{p_score}} points</p>
+            
+                {% for card in p_hand %}
+
+                <div class="card-item {{card.getType()}}">
+                    {{card.getAsString() }}
+                </div>
+
+                {% endfor %}
+
+
+
+            </div>
+        </div>
+
+        {% if end_of_match %}
+            <div class ="card-paths">
+                <a href="{{ path('newGame')}}"> New Game</a>
+            </div>
+
+        {% else %}
+            <div class="card-paths">
+                <a href="{{ path('drawCard') }}">Draw Card</a>
+                <a href="{{ path('stop') }}">Stand</a>
+            </div>
+            
+        {% endif %}
+
+    </main>
+
+
+{% endblock %}

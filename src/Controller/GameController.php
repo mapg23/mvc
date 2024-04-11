@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Card\CardGraphic;
+use App\Card\CardHand;
 use App\Card\DeckOfCards;
+use App\Game\Game;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,26 +27,49 @@ class GameController extends AbstractController
         return $this->render("game/doc.html.twig");
     }
 
-    // #[Route("/card/deck/draw/{num<\d+>}", name: "draw_get")]
-    public function drawMultiple(
-        int $num,
+    #[Route("/game/start", name: "start")]
+    public function startGame(
         SessionInterface $session
-    ): Response {
-        $deck = new DeckOfCards();
+    ) {
 
-        if ($session->has("deck")) {
-            $deck->setDeck($session->get("deck"));
-        }
+        $game = new Game($session);
+        $data = $game->getData();
 
-        $card = $deck->drawCard($num);
+        return $this->render("game/game.html.twig", $data);
+    }
 
-        $session->set("deck", $deck->getDeck());
+    #[Route("/game/start/draw", name: "drawCard")]
+    public function drawCard(
+        SessionInterface $session
+    ) {
+        $game = new Game($session);
+        $game->round();
+        $data = $game->getData();
 
-        $data = [
-            'cards' => $card,
-            "count" => $deck->getDeckSize()
-        ];
+        return $this->render("game/game.html.twig", $data);
+    }
 
-        return $this->render("card/draw.html.twig", $data);
+    #[Route("/game/start/stop", name: "stop")]
+    public function stop(
+        SessionInterface $session
+    )
+    {
+        $game = new Game($session);
+        $game->stand();
+        $data = $game->getData();
+
+        return $this->render("game/game.html.twig", $data);
+    }
+
+    #[Route("/game/start/new_game", name: "newGame")]
+    public function newGame(
+        SessionInterface $session
+    )
+    {
+        $game = new Game($session);
+        $game->newMatch();
+        $data = $game->getData();
+
+        return $this->render("game/game.html.twig", $data);
     }
 }

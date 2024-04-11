@@ -9,55 +9,53 @@
     <main class="main doc">
         <h1>Documentation av Black Jack</h1>
 
+        <h2>Klassen Game</h2>
 
         <p>
-            Vanlig kod
+            Klassen game kommer användas för att hålla matchen vid liv.
+            Game klassen är vad som tar hand om vems tur det är, kolla poäng samt dela ut kort.
+            Klassens syfte är alltså att agera både som kortlek men även som datorn man spelar emot.
         </p>
 
-        <h2>Klassen Game</h2>
-        <code>
-        <pre class="code-block">
-            
-            Class Game extends DeckOfCards
-            {
-            &emsp;
-                private array $deck;
+        <img class="doc-img" align="left" src="{{ asset('img/gameClass.png')}}" alt="Game Class">
 
-                private bool $playersTurn = false;
+        <hr>
 
-                private array $playerHand;
-                private array $computerHand;
+        <h2>Implementerade metoder i CardHand klassen</h2>
+        <p>
+            CardHand klassen som redan finns har blivit modifierad för att stödja blackjack.
+            Klassen används för att representera en spelares hand.
+            Alla kort i handen är CardGraphic klasser som skall representera ett kort.
+            Det är här korten omvandlas till poäng som Game klassen kan använda sig av för att se vem som vinner.
+        </p>
 
-                public function __construct()
-                {
-                &emsp;    parent::__construct();
-                }
+        <img class="doc-img" align="left" src="{{ asset('img/methodsFromHand.png')}}" alt="CardHand Methods">
+        
+        <hr>
 
-                public function drawCard(int $amount = 1) {
-                &emsp;  $card = parent::drawCard($ammount);
 
-                &emsp; if (playersTurn is false) {
-                &emsp;&emsp; computerHand adds a card
-                &emsp; } 
-                &emsp; else {
-                &emsp;&emsp; playerHand adds a card
-                &emsp;} 
-                }
+        <h2>Card &amp; CardGraphic klasserna</h2>
 
-                public function CheckScore() {
+        <p>
+            CardGraphic bygger på Card klassen som används som en basklass.
+            CardGraphics ska representera ett kort i kortleken.
+            Card klassen har en getter som returnerar propertyn value som kommer användas vid uträkningen av poängen.
+            CardGraphic har en två dimensionel array som innehåller alla korten, där korten är av typen string.
+            Dessa strängar är vad som används för att visualisera korten i spelet.
+        </p>
 
-                }
+        <hr>
 
-            &emsp;
-            }
-
-        </pre>
-        </code>
+        <h2>CardGameController klassen</h2>
+        <p>
+            Detta är klassen som tar hand om all routing.
+        </p>
 
     </main>
 
     <aside class="aside doc">
         <h1>Flödesschema</h1>
+
 
         <img class="doc-img" src="{{ asset('img/flowchart.png')}}" alt="Flowchart">
 
