@@ -11,11 +11,13 @@ class CardHand
 
     private bool $stop = false;
 
+    /** @param array<CardGraphic>|null $existingHand */
     public function __construct($existingHand = null)
-    {  
+    {
         $this->hand = ($existingHand !== null) ? $existingHand : [];
     }
 
+    /** @param array<CardGraphic> $cards */
     public function add(array $cards): void
     {
         foreach($cards as $card) {
@@ -29,7 +31,13 @@ class CardHand
         return $this->hand;
     }
 
-    public function hasStoped():bool
+    /** @param array<CardGraphic> $hand */
+    public function setHand(array $hand): void
+    {
+        $this->hand = $hand;
+    }
+
+    public function hasStoped(): bool
     {
         return $this->stop;
     }
@@ -42,32 +50,46 @@ class CardHand
     public function calculateScore(): int
     {
         $score = 0;
+        $aceCount = 0;
+        $count = sizeof($this->hand);
 
-        for ($i = 0; $i < count($this->hand); $i++)
-        {
+        for ($i = 0; $i < $count; $i++) {
             $value = $this->hand[$i]->getValue();
 
-            if ($value > 10) {
-                $score += 10;
+            if ($value === 1) {
+                $aceCount++;
                 continue;
             }
 
-            if ($value === 1) {
-                $score += 11;
+            if($value > 10) {
+                $score += 10;
                 continue;
             }
 
             $score += $value;
         }
 
+        for ($i = 0; $i < $aceCount; $i++) {
+            if($score + 11 > 21) {
+                $score += 1;
+                continue;
+            }
+
+            /** @phpstan-ignore-next-line */
+            if($score + 11 < 22) {
+                $score += 11;
+            }
+        }
         return $score;
     }
 
-    public function setStand(bool $stop) {
+    /** @param bool $stop */
+    public function setStand(bool $stop): void
+    {
         $this->stop = $stop;
     }
 
-    public function getStop()
+    public function getStop(): bool
     {
         return $this->stop;
     }

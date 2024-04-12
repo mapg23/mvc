@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class Game
 {
+    /** @var array<CardGraphic> */
     private array $deck;
     /** @var array<string> */
     private array $types = ["spades", "hearts", "diamonds", "clubs"];
@@ -24,37 +25,29 @@ class Game
     {
         $this->session = $session;
 
-        if ($this->session->has("game_deck")) 
-        {
-            $this->setDeck($this->session->get("game_deck"));
-        } 
-        else 
-        {
-            $this->generateDeck();
-        }
-        $this->player = new CardHand($this->session->get("p_hand")) ?? new CardHand();
-        $this->computer = new CardHand($this->session->get("c_hand")) ?? new CardHand();
-        
-        if ($this->session->has("p_stand")) 
-        {
+        $this->setDeck($this->session->get("game_deck"));
+
+        $this->player = new CardHand($this->session->get("p_hand"));
+        $this->computer = new CardHand($this->session->get("c_hand"));
+
+        if ($this->session->has("p_stand")) {
             $this->loadStandsFromSession();
         }
 
-        if ($this->session->has("result"))
-        {
+        if ($this->session->has("result")) {
             $this->result = $this->session->get("result");
         }
-        
+
         $this->saveToSession();
     }
 
-    public function loadStandsFromSession()
+    public function loadStandsFromSession(): void
     {
         $this->player->setStand($this->session->get("p_stand"));
         $this->computer->setStand($this->session->get("c_stand"));
     }
 
-    public function saveToSession()
+    public function saveToSession(): void
     {
         $this->session->set("p_hand", $this->player->getHand());
         $this->session->set("c_hand", $this->computer->getHand());
@@ -70,31 +63,31 @@ class Game
     {
         $this->loadStandsFromSession();
 
-        if ($this->player->getScore() > 21)
-        {
+        if ($this->player->getScore() > 21) {
             $this->player->setStand(true);
-        }
-
-        if ($this->computer->getScore() >= 17)
-        {
-            $this->computer->setStand(true);
-        }
-
-        if ($this->player->getStop()) 
-        {
-            $this->drawRecursive();
-
             $this->endOfMatch = true;
-            
             $this->result = $this->displayResult();
-            
             $this->saveToSession();
-            
             return;
         }
 
-        if ($this->computer->getStop())
-        {
+        if ($this->computer->getScore() >= 17) {
+            $this->computer->setStand(true);
+        }
+
+        if ($this->player->getStop()) {
+            $this->drawRecursive();
+
+            $this->endOfMatch = true;
+
+            $this->result = $this->displayResult();
+
+            $this->saveToSession();
+
+            return;
+        }
+
+        if ($this->computer->getStop()) {
             $this->player->add($this->drawCard(1));
             $this->saveToSession();
             return;
@@ -107,7 +100,7 @@ class Game
         return;
     }
 
-    public function drawRecursive()
+    public function drawRecursive(): void
     {
         if ($this->computer->getScore() >= 17) {
             $this->computer->setStand(true);
@@ -119,7 +112,7 @@ class Game
         $this->drawRecursive();
     }
 
-    public function newMatch()
+    public function newMatch(): void
     {
         $this->player = new CardHand();
         $this->computer = new CardHand();
@@ -129,28 +122,24 @@ class Game
         $this->saveToSession();
     }
 
-    public function displayResult()
+    public function displayResult(): string
     {
         $playerScore = $this->player->getScore();
         $computerScore = $this->computer->getScore();
 
-        if ($playerScore >= 22)
-        {
+        if ($playerScore >= 22) {
             return "Lose";
         }
 
-        if ($computerScore >= 22)
-        {
+        if ($computerScore >= 22) {
             return "Win";
         }
 
-        if ($playerScore > $computerScore)
-        {
+        if ($playerScore > $computerScore) {
             return "Win";
         }
 
-        if ($computerScore > $playerScore)
-        {
+        if ($computerScore > $playerScore) {
             return "Lose";
         }
 
@@ -158,7 +147,7 @@ class Game
 
     }
 
-    public function stand()
+    public function stand(): void
     {
         $this->player->setStand(true);
         $this->saveToSession();
@@ -166,7 +155,7 @@ class Game
         $this->round();
     }
 
-    public function generateDeck() 
+    public function generateDeck(): void
     {
         foreach($this->types as $type) {
 
@@ -176,7 +165,9 @@ class Game
         }
     }
 
-    public function getData() {
+    /** @return array<string, array<CardGraphic> |bool|int|string> */
+    public function getData(): array
+    {
         $data = [
             "p_hand" => $this->player->getHand(),
             "p_score" => $this->player->getScore(),
@@ -214,12 +205,19 @@ class Game
         return $cards;
     }
 
-    public function setDeck(array $deck)
+    /** @param array<CardGraphic> $deck */
+    public function setDeck(array $deck = null): void
     {
+        if (is_null($deck)) {
+            $this->generateDeck();
+            return;
+        }
+
         $this->deck = $deck;
+        return;
     }
 
-    public function getDeckSize()
+    public function getDeckSize(): int
     {
         return count($this->deck);
     }
