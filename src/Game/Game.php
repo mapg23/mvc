@@ -65,7 +65,6 @@ class Game
 
         if ($this->player->getScore() > 21) {
             $this->player->setStand(true);
-            $this->endOfMatch = true;
             $this->result = $this->displayResult();
             $this->saveToSession();
             return;
@@ -77,13 +76,8 @@ class Game
 
         if ($this->player->getStop()) {
             $this->drawRecursive();
-
-            $this->endOfMatch = true;
-
             $this->result = $this->displayResult();
-
             $this->saveToSession();
-
             return;
         }
 
@@ -126,6 +120,7 @@ class Game
     {
         $playerScore = $this->player->getScore();
         $computerScore = $this->computer->getScore();
+        $this->endOfMatch = true;
 
         if ($playerScore >= 22) {
             return "Lose";
@@ -144,6 +139,7 @@ class Game
         }
 
         return "Tie";
+
 
     }
 

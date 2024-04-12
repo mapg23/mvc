@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Card\DeckOfCards;
-
+use App\Game\Game;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -142,4 +142,24 @@ class ApiController extends AbstractController
 
         return $response;
     }
+
+
+    #[Route("/api/game", name: "api_game", methods: ["GET"])]
+    public function apiGame(
+        SessionInterface $session
+    ): Response {
+
+        $game = new Game($session);
+
+        $data = $game->getData();
+
+        $response = new Response();
+        $parsedData = json_encode($data) ?: null;
+        $response->setContent($parsedData);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+
 }
