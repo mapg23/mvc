@@ -242,6 +242,9 @@
   padding: 1em;
 }
 
+.doc {
+  max-width: 800px;
+}
 .doc p {
   font-family: "Nunito", sans-serif;
   text-align: left;
@@ -250,7 +253,7 @@
   font-family: "Nunito", sans-serif;
 }
 .doc h2 {
-  text-align: left;
+  text-align: center;
   text-decoration: underline;
   font-family: "Nunito", sans-serif;
 }
@@ -258,6 +261,7 @@
   width: 100%;
   border: 2px solid #353e4b;
   border-radius: 10px;
+  margin-bottom: 1rem;
 }
 
 .black-jack-main .card-item {

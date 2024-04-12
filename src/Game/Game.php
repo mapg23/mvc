@@ -172,7 +172,6 @@ class Game
             "p_hand" => $this->player->getHand(),
             "p_score" => $this->player->getScore(),
 
-
             "c_hand" => $this->computer->getHand(),
             "c_score" => $this->computer->getScore(),
 

@@ -13,6 +13,7 @@
 }
 
 .doc {
+    max-width: 800px;
     p {
         font-family: $sans-serif;
         text-align: left;
@@ -23,7 +24,7 @@
     }
 
     h2 {
-        text-align: left;
+        text-align: center;
         text-decoration: underline;
         font-family: $sans-serif;
     }
@@ -32,5 +33,7 @@
         width: 100%;
         border: 2px solid #353e4b;
         border-radius: 10px;
+
+        margin-bottom: 1rem;
     }
 }
