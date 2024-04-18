@@ -13,11 +13,11 @@ class Game
     /** @var array<string> */
     private array $types = ["spades", "hearts", "diamonds", "clubs"];
 
-    private bool $endOfMatch = false;
-    private string $result = "";
+    public bool $endOfMatch = false;
+    public string $result = "";
 
-    private CardHand $computer;
-    private CardHand $player;
+    public CardHand $computer;
+    public CardHand $player;
 
     private SessionInterface $session;
 
@@ -210,6 +210,12 @@ class Game
 
         $this->deck = $deck;
         return;
+    }
+
+    /** @return array<CardGraphic> */
+    public function getDeck()
+    {
+        return $this->deck;
     }
 
     public function getDeckSize(): int

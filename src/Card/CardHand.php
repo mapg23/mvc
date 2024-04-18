@@ -83,9 +83,14 @@ class CardHand
         return $score;
     }
 
-    /** @param bool $stop */
-    public function setStand(bool $stop): void
-    {
+    /** @param bool|null $stop */
+    public function setStand(bool|null $stop): void
+    {  
+        if (is_null($stop))
+        {
+            return;
+        }
+
         $this->stop = $stop;
     }
 

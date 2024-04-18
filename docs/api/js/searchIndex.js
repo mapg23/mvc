@@ -506,6 +506,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Game-Game.html#method_setDeck"
         },                {
+            "fqsen": "\\App\\Game\\Game\u003A\u003AgetDeck\u0028\u0029",
+            "name": "getDeck",
+            "summary": "",
+            "url": "classes/App-Game-Game.html#method_getDeck"
+        },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AgetDeckSize\u0028\u0029",
             "name": "getDeckSize",
             "summary": "",
