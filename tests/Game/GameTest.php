@@ -12,8 +12,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class GameTest extends TestCase
 {
-    private $session;
-
+    private SessionInterface $session;
     /**
      * Method that invokes a Session mock.
      */
@@ -21,23 +20,23 @@ class GameTest extends TestCase
     {
         $this->session = $this->createMock(SessionInterface::class);
     }
-    
+
     /**
      * Method that tests if the class is instantiated properly.
      */
-    public function testCreatedProperly()
-    {   
-        $game = new Game($this->session);        
-        
+    public function testCreatedProperly(): void
+    {
+        $game = new Game($this->session);
+
         $this->assertInstanceOf("\App\Game\Game", $game);
     }
 
     /**
      * Method that tests Game::rounds().
      * This method will check if the correct result is produced.
-     * 
+     *
      */
-    public function testRounds()
+    public function testRounds(): void
     {
         $game = new Game($this->session);
 
@@ -67,12 +66,12 @@ class GameTest extends TestCase
         $game = new Game($this->session);
 
         $this->assertEquals([], $game->player->getHand());
-        
+
         $game->computer->setStand(true);
         $game->round();
 
         $this->assertNotEquals([], $game->player->getHand());
-    
+
         // no condition
 
         $game = new Game($this->session);
@@ -81,7 +80,7 @@ class GameTest extends TestCase
         $this->assertEquals([], $game->computer->getHand());
 
         $game->round();
-        
+
         $this->assertNotEquals([], $game->player->getHand());
         $this->assertNotEquals([], $game->computer->getHand());
     }
@@ -91,15 +90,15 @@ class GameTest extends TestCase
      * Test method for Game::newMatch().
      * This method will test if everything is reset when creating a new match.
      */
-    public function testNewMatch()
+    public function testNewMatch(): void
     {
         $game = new Game($this->session);
 
-        $game->player->setHand(array (
+        $game->player->setHand(array(
             new CardGraphic("diamonds", 2)
         ));
-        
-        $game->computer->setHand(array (
+
+        $game->computer->setHand(array(
             new CardGraphic("diamonds", 2)
         ));
         $game->endOfMatch = true;
@@ -119,10 +118,10 @@ class GameTest extends TestCase
      * This method will test if the correct result is returned,
      * depending on a couple of conditions.
      */
-    public function testDisplayResult()
+    public function testDisplayResult(): void
     {
         $game = new Game($this->session);
-        
+
         // player score >= 22
         $game->player->setHand(array(
             new CardGraphic("diamonds", 11),
@@ -142,11 +141,11 @@ class GameTest extends TestCase
         ));
 
         $this->assertEquals("Win", $game->displayResult());
-        
+
         // player score > computer score
         $game->computer->setHand([]);
         $game->player->setHand(array(new CardGraphic("diamonds", 10)));
-    
+
         $this->assertEquals("Win", $game->displayResult());
 
         // computer score > player score
@@ -167,7 +166,7 @@ class GameTest extends TestCase
      * Test method for Game::stand().
      * This method will test if stand() sets player stop to true.
      */
-    public function testStand()
+    public function testStand(): void
     {
         $game = new Game($this->session);
         $game->stand();
@@ -179,7 +178,7 @@ class GameTest extends TestCase
      * Test method for Game::GenerateDeck.
      * This method will test if generating a deck, generates a different.
      */
-    public function testGenerateDeck()
+    public function testGenerateDeck(): void
     {
         $game = new Game($this->session);
         $deck = $game->getDeck();
@@ -195,7 +194,7 @@ class GameTest extends TestCase
      * Test method for Game::GetData().
      * This method will test if GetData() returns and array with the right keys.
      */
-    public function testGetData()
+    public function testGetData(): void
     {
         $game = new Game($this->session);
 
@@ -215,14 +214,14 @@ class GameTest extends TestCase
      * This method will test if drawing the last card from a deck will re-generate a new deck.
      * Allso check so that the drawn card is unset.
      */
-    public function testDrawCard()
+    public function testDrawCard(): void
     {
         $game = new Game($this->session);
         $game->generateDeck();
         $drawnCard = $game->drawCard();
-    
+
         $this->assertNotContains($drawnCard, $game->getDeck());
-    
+
         $game->setDeck([]);
         $game->drawCard();
 
@@ -232,7 +231,7 @@ class GameTest extends TestCase
      * Test method for Game::setDeck().
      * This method will check that the new deck isnt the same as the previous one.
      */
-    public function testSetDeck()
+    public function testSetDeck(): void
     {
         $game = new Game($this->session);
         $deck = $game->getDeck();
@@ -252,7 +251,7 @@ class GameTest extends TestCase
      * This method will make sure that the return type is of Int.
      * It will also check that its equal to sizeof() the deck.
      */
-    public function testGetDeckSize()
+    public function testGetDeckSize(): void
     {
         $game = new Game($this->session);
 

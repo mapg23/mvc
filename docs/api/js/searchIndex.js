@@ -443,77 +443,77 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Game\\Game",
             "name": "Game",
-            "summary": "",
+            "summary": "Class\u0020that\u0020represents\u0020the\u0020game\u0020itself.",
             "url": "classes/App-Game-Game.html"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Method\u0020that\u0020executes\u0020on\u0020start.",
             "url": "classes/App-Game-Game.html#method___construct"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AloadStandsFromSession\u0028\u0029",
             "name": "loadStandsFromSession",
-            "summary": "",
+            "summary": "This\u0020method\u0020loads\u0020whos\u0020turn\u0020it\u0020is\u0020to\u0020draw\u0020a\u0020card\u0020from\u0020session.",
             "url": "classes/App-Game-Game.html#method_loadStandsFromSession"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AsaveToSession\u0028\u0029",
             "name": "saveToSession",
-            "summary": "",
+            "summary": "Method\u0020that\u0020saves\u0020all\u0020variables\u0020to\u0020session.",
             "url": "classes/App-Game-Game.html#method_saveToSession"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003Around\u0028\u0029",
             "name": "round",
-            "summary": "",
+            "summary": "This\u0020method\u0020is\u0020used\u0020to\u0020represent\u0020a\u0020round\u0020of\u0020the\u0020game.",
             "url": "classes/App-Game-Game.html#method_round"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AdrawRecursive\u0028\u0029",
             "name": "drawRecursive",
-            "summary": "",
+            "summary": "Method\u0020used\u0020for\u0020computer\u0020to\u0020draw\u0020multiple\u0020cards\u0020while\u0020the\u0020player\u0020has\u0020stoped.",
             "url": "classes/App-Game-Game.html#method_drawRecursive"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AnewMatch\u0028\u0029",
             "name": "newMatch",
-            "summary": "",
+            "summary": "Method\u0020that\u0020resets\u0020all\u0020variables\u0020in\u0020order\u0020to\u0020start\u0020a\u0020new\u0020match.",
             "url": "classes/App-Game-Game.html#method_newMatch"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AdisplayResult\u0028\u0029",
             "name": "displayResult",
-            "summary": "",
+            "summary": "Method\u0020that\u0020returns\u0020Lose,\u0020Win\u0020or\u0020Tie\u0020depending\u0020on\u0020the\u0020outcome\u0020of\u0020the\u0020match.",
             "url": "classes/App-Game-Game.html#method_displayResult"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003Astand\u0028\u0029",
             "name": "stand",
-            "summary": "",
+            "summary": "Method\u0020used\u0020to\u0020make\u0020the\u0020playet\u0020stand.",
             "url": "classes/App-Game-Game.html#method_stand"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AgenerateDeck\u0028\u0029",
             "name": "generateDeck",
-            "summary": "",
+            "summary": "Method\u0020used\u0020to\u0020generate\u0020a\u0020new\u0020deck.",
             "url": "classes/App-Game-Game.html#method_generateDeck"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AgetData\u0028\u0029",
             "name": "getData",
-            "summary": "",
+            "summary": "Method\u0020used\u0020to\u0020return\u0020all\u0020data\u0020from\u0020the\u0020game.",
             "url": "classes/App-Game-Game.html#method_getData"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AdrawCard\u0028\u0029",
             "name": "drawCard",
-            "summary": "",
+            "summary": "Method\u0020used\u0020to\u0020draw\u0020a\u0020card\u0020from\u0020the\u0020deck.",
             "url": "classes/App-Game-Game.html#method_drawCard"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AsetDeck\u0028\u0029",
             "name": "setDeck",
-            "summary": "",
+            "summary": "Method\u0020used\u0020to\u0020set\u0020the\u0020deck.",
             "url": "classes/App-Game-Game.html#method_setDeck"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AgetDeck\u0028\u0029",
             "name": "getDeck",
-            "summary": "",
+            "summary": "Method\u0020used\u0020to\u0020get\u0020the\u0020deck.",
             "url": "classes/App-Game-Game.html#method_getDeck"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AgetDeckSize\u0028\u0029",
             "name": "getDeckSize",
-            "summary": "",
+            "summary": "Method\u0020used\u0020to\u0020get\u0020the\u0020size\u0020of\u0020the\u0020deck.",
             "url": "classes/App-Game-Game.html#method_getDeckSize"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003A\u0024deck",

@@ -85,9 +85,8 @@ class CardHand
 
     /** @param bool|null $stop */
     public function setStand(bool|null $stop): void
-    {  
-        if (is_null($stop))
-        {
+    {
+        if (is_null($stop)) {
             return;
         }
 

@@ -6,8 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class CardGraphicTest extends TestCase
 {
-
-    public function testCreatedProperly()
+    public function testCreatedProperly(): void
     {
         $card = new CardGraphic("diamond", 2);
 
@@ -17,7 +16,7 @@ class CardGraphicTest extends TestCase
         $this->assertEquals(2, $card->getValue());
     }
 
-    public function testGetAsString()
+    public function testGetAsString(): void
     {
         $card = new CardGraphic("diamonds", 2);
 

@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
  */
 class DeckOfCardsTest extends TestCase
 {
-    public function testCreationOfDeck()
+    public function testCreationOfDeck(): void
     {
         $deck = new DeckOfCards();
 
@@ -18,7 +18,7 @@ class DeckOfCardsTest extends TestCase
         $this->assertContainsOnlyInstancesOf("\App\Card\CardGraphic", $deck->getDeck());
     }
 
-    public function testDrawCards()
+    public function testDrawCards(): void
     {
         $deck = new DeckOfCards();
 
@@ -30,25 +30,25 @@ class DeckOfCardsTest extends TestCase
         $this->assertNotContains($newCard, $deck->getDeck());
     }
 
-    public function testGetDeckSize()
+    public function testGetDeckSize(): void
     {
         $deck = new DeckOfCards();
 
         $this->assertIsInt($deck->getDeckSize());
-        
+
         $deck->drawCard(10);
 
         $this->assertEquals(42, $deck->getDeckSize());
     }
 
-    public function testGetDeck()
+    public function testGetDeck(): void
     {
         $deck = new DeckOfCards();
 
         $this->assertContainsOnlyInstancesOf("\App\Card\CardGraphic", $deck->getDeck());
     }
 
-    public function testSetDeck()
+    public function testSetDeck(): void
     {
         $deck = new DeckOfCards();
 
@@ -64,7 +64,7 @@ class DeckOfCardsTest extends TestCase
         $this->assertEqualsCanonicalizing($cards, $deck->getDeck());
     }
 
-    public function testShuffleDeck()
+    public function testShuffleDeck(): void
     {
         $deck = new DeckOfCards();
 
@@ -77,10 +77,10 @@ class DeckOfCardsTest extends TestCase
         $this->assertNotEquals($unOrderdDeck, $deck->getDeck());
     }
 
-    public function testSortingOnNumbers()
+    public function testSortingOnNumbers(): void
     {
         $deck = new DeckOfCards();
-        
+
         $newCards = array(
             new CardGraphic("diamonds", 3),
             new CardGraphic("diamonds", 2),
@@ -95,10 +95,10 @@ class DeckOfCardsTest extends TestCase
         $this->assertEquals($cards[1]->getValue(), 3);
     }
 
-    public function testSortingOnTypes()
+    public function testSortingOnTypes(): void
     {
         $deck = new DeckOfCards();
-        
+
         $newCards = array(
             new CardGraphic("hearts", 3),
             new CardGraphic("clubs", 5),

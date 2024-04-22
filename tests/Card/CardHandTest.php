@@ -4,11 +4,9 @@ namespace App\Card;
 
 use PHPUnit\Framework\TestCase;
 
-
 class CardHandTest extends TestCase
 {
-
-    public function testCardHandCreate()
+    public function testCardHandCreate(): void
     {
         $hand = array(
             new CardGraphic("diamonds", 1),
@@ -17,7 +15,7 @@ class CardHandTest extends TestCase
 
         $emptyHand = new CardHand();
         $cardHand = new CardHand($hand);
-        
+
         $this->assertInstanceOf("\App\Card\CardHand", $cardHand);
         $this->assertInstanceOf("\App\Card\CardHand", $emptyHand);
 
@@ -25,7 +23,7 @@ class CardHandTest extends TestCase
         $this->assertEqualsCanonicalizing($hand, $cardHand->getHand());
     }
 
-    public function testAddCardToHand()
+    public function testAddCardToHand(): void
     {
         $hand = array(
             new CardGraphic("diamonds", 1),
@@ -39,14 +37,14 @@ class CardHandTest extends TestCase
         $this->assertEqualsCanonicalizing($hand, $cardHand->getHand());
     }
 
-    public function testGetHand()
+    public function testGetHand(): void
     {
         $cardHand = new CardHand();
 
         $this->assertEqualsCanonicalizing([], $cardHand->getHand());
     }
 
-    public function testSetHand()
+    public function testSetHand(): void
     {
         $hand = array(
             new CardGraphic("diamonds", 1),
@@ -62,7 +60,7 @@ class CardHandTest extends TestCase
         $this->assertEqualsCanonicalizing($hand, $cardHand->getHand());
     }
 
-    public function testHasStoped()
+    public function testHasStoped(): void
     {
         $cardHand = new CardHand();
 
@@ -72,15 +70,15 @@ class CardHandTest extends TestCase
         $this->assertTrue($cardHand->hasStoped());
     }
 
-    public function testGetScore()
+    public function testGetScore(): void
     {
         $cardHand = new CardHand(array(new CardGraphic("diamonds", 2)));
-        
+
         $this->assertIsInt($cardHand->getScore());
         $this->assertEquals(2, $cardHand->getScore());
     }
 
-    public function testCalculateScore()
+    public function testCalculateScore(): void
     {
         $hand = array(
             new CardGraphic("diamonds", 1),
@@ -94,7 +92,7 @@ class CardHandTest extends TestCase
         $this->assertEquals(16, $cardHand->calculateScore());
     }
 
-    public function testGetStop()
+    public function testGetStop(): void
     {
         $cardHand = new CardHand();
 

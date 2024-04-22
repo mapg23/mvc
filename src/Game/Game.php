@@ -6,6 +6,9 @@ use App\Card\CardGraphic;
 use App\Card\CardHand;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * Class that represents the game itself.
+ */
 class Game
 {
     /** @var array<CardGraphic> */
@@ -21,6 +24,10 @@ class Game
 
     private SessionInterface $session;
 
+    /**
+     * Method that executes on start.
+     * @param SessionInterface $session, this is the session that store all data.
+     */
     public function __construct(SessionInterface $session)
     {
         $this->session = $session;
@@ -41,12 +48,18 @@ class Game
         $this->saveToSession();
     }
 
+    /**
+     * This method loads whos turn it is to draw a card from session.
+     */
     public function loadStandsFromSession(): void
     {
         $this->player->setStand($this->session->get("p_stand"));
         $this->computer->setStand($this->session->get("c_stand"));
     }
 
+    /**
+     * Method that saves all variables to session.
+     */
     public function saveToSession(): void
     {
         $this->session->set("p_hand", $this->player->getHand());
@@ -59,6 +72,9 @@ class Game
         $this->session->set("result", $this->result);
     }
 
+    /**
+     * This method is used to represent a round of the game.
+     */
     public function round(): void
     {
         $this->loadStandsFromSession();
@@ -94,6 +110,9 @@ class Game
         return;
     }
 
+    /**
+     * Method used for computer to draw multiple cards while the player has stoped.
+     */
     public function drawRecursive(): void
     {
         if ($this->computer->getScore() >= 17) {
@@ -106,6 +125,9 @@ class Game
         $this->drawRecursive();
     }
 
+    /**
+     * Method that resets all variables in order to start a new match.
+     */
     public function newMatch(): void
     {
         $this->player = new CardHand();
@@ -116,6 +138,9 @@ class Game
         $this->saveToSession();
     }
 
+    /**
+     * Method that returns Lose, Win or Tie depending on the outcome of the match.
+     */
     public function displayResult(): string
     {
         $playerScore = $this->player->getScore();
@@ -143,6 +168,9 @@ class Game
 
     }
 
+    /**
+     * Method used to make the playet stand.
+     */
     public function stand(): void
     {
         $this->player->setStand(true);
@@ -151,6 +179,9 @@ class Game
         $this->round();
     }
 
+    /**
+     * Method used to generate a new deck.
+     */
     public function generateDeck(): void
     {
         foreach($this->types as $type) {
@@ -161,7 +192,12 @@ class Game
         }
     }
 
-    /** @return array<string, array<CardGraphic> |bool|int|string> */
+    /**
+     * Method used to return all data from the game.
+     * The array is used for display in the twig files.
+     *
+     * @return array<string, array<CardGraphic> |bool|int|string>
+     */
     public function getData(): array
     {
         $data = [
@@ -178,7 +214,11 @@ class Game
         return $data;
     }
 
-    /** @return array<CardGraphic> */
+    /**
+     * Method used to draw a card from the deck.
+     * The returned card will be added to the player or computer hand.
+     * @return array<CardGraphic>
+     */
     public function drawCard(int $amount = 1): array
     {
         if ($this->getDeckSize() === 0) {
@@ -200,7 +240,11 @@ class Game
         return $cards;
     }
 
-    /** @param array<CardGraphic> $deck */
+    /**
+     * Method used to set the deck.
+     * Used when taking a deck from session.
+     * @param array<CardGraphic> $deck
+     */
     public function setDeck(array $deck = null): void
     {
         if (is_null($deck)) {
@@ -212,12 +256,18 @@ class Game
         return;
     }
 
-    /** @return array<CardGraphic> */
+    /**
+     * Method used to get the deck.
+     * @return array<CardGraphic>
+     */
     public function getDeck()
     {
         return $this->deck;
     }
 
+    /**
+     * Method used to get the size of the deck.
+     */
     public function getDeckSize(): int
     {
         return count($this->deck);

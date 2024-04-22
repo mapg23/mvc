@@ -13,7 +13,7 @@ class CardTest extends TestCase
      * Construct object and verify that the object has the expected
      * properties, use no arguments.
      */
-    public function testGetType()
+    public function testGetType(): void
     {
         $card = new Card("diamond", 2);
         $this->assertInstanceOf("\App\Card\Card", $card);
@@ -25,7 +25,7 @@ class CardTest extends TestCase
      * Construct object and verify that the object has the expected
      * properties, use no arguments.
      */
-    public function testGetValue()
+    public function testGetValue(): void
     {
         $card = new Card("diamond", 2);
         $this->assertInstanceOf("\App\Card\Card", $card);
