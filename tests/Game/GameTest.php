@@ -83,7 +83,6 @@ class GameTest extends TestCase
         $this->assertNotEquals([], $game->computer->getHand());
     }
 
-
     /**
      * Test method for Game::newMatch().
      * This method will test if everything is reset when creating a new match.
