@@ -15,7 +15,7 @@ class GameTest extends TestCase
     private SessionInterface $session;
     /**
      * Method that invokes a Session mock.
-     * 
+     *
      * @return void
      */
     protected function setUp(): void
@@ -25,7 +25,7 @@ class GameTest extends TestCase
 
     /**
      * Method that tests if the class is instantiated properly.
-     * 
+     *
      * @return void
      */
     public function testCreatedProperly(): void
@@ -38,7 +38,7 @@ class GameTest extends TestCase
     /**
      * Method that tests Game::rounds().
      * This method will check if the correct result is produced.
-     * 
+     *
      * @return void
      */
     public function testRounds(): void
@@ -92,7 +92,7 @@ class GameTest extends TestCase
     /**
      * Test method for Game::newMatch().
      * This method will test if everything is reset when creating a new match.
-     * 
+     *
      * @return void
      */
     public function testNewMatch(): void
@@ -122,7 +122,7 @@ class GameTest extends TestCase
      * Test method for Game::displayResult().
      * This method will test if the correct result is returned,
      * depending on a couple of conditions.
-     * 
+     *
      * @return void
      */
     public function testDisplayResult(): void
@@ -173,7 +173,7 @@ class GameTest extends TestCase
     /**
      * Test method for Game::stand().
      * This method will test if stand() sets player stop to true.
-     * 
+     *
      * @return void
      */
     public function testStand(): void
@@ -187,7 +187,7 @@ class GameTest extends TestCase
     /**
      * Test method for Game::GenerateDeck.
      * This method will test if generating a deck, generates a different.
-     * 
+     *
      * @return void
      */
     public function testGenerateDeck(): void
@@ -205,7 +205,7 @@ class GameTest extends TestCase
     /**
      * Test method for Game::GetData().
      * This method will test if GetData() returns and array with the right keys.
-     * 
+     *
      * @return void
      */
     public function testGetData(): void
@@ -227,7 +227,7 @@ class GameTest extends TestCase
      * Test method for Game::DrawCard().
      * This method will test if drawing the last card from a deck will re-generate a new deck.
      * Allso check so that the drawn card is unset.
-     * 
+     *
      * @return void
      */
     public function testDrawCard(): void
@@ -246,7 +246,7 @@ class GameTest extends TestCase
     /**
      * Test method for Game::setDeck().
      * This method will check that the new deck isnt the same as the previous one.
-     * 
+     *
      * @return void
      */
     public function testSetDeck(): void
@@ -268,7 +268,7 @@ class GameTest extends TestCase
      * Test method for Game::getDeckSize().
      * This method will make sure that the return type is of Int.
      * It will also check that its equal to sizeof() the deck.
-     * 
+     *
      * @return void
      */
     public function testGetDeckSize(): void
