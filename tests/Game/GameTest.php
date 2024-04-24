@@ -34,7 +34,6 @@ class GameTest extends TestCase
     /**
      * Method that tests Game::rounds().
      * This method will check if the correct result is produced.
-     *
      */
     public function testRounds(): void
     {
@@ -52,7 +51,7 @@ class GameTest extends TestCase
         $this->assertEquals("Lose", $game->result);
 
         // computer score > 17
-        $game = new Game($this->session);
+        $game->newMatch();
 
         $game->computer->setHand(array(
             new CardGraphic("diamonds", 10),
@@ -63,7 +62,7 @@ class GameTest extends TestCase
         $this->assertTrue($game->computer->getStop());
 
         // computer has stopped.
-        $game = new Game($this->session);
+        $game->newMatch();
 
         $this->assertEquals([], $game->player->getHand());
 
@@ -73,8 +72,7 @@ class GameTest extends TestCase
         $this->assertNotEquals([], $game->player->getHand());
 
         // no condition
-
-        $game = new Game($this->session);
+        $game->newMatch();
 
         $this->assertEquals([], $game->player->getHand());
         $this->assertEquals([], $game->computer->getHand());
@@ -132,7 +130,7 @@ class GameTest extends TestCase
         $this->assertEquals("Lose", $game->displayResult());
 
         // computer score >= 22
-        $game->player->setHand([]);
+        $game->newMatch();
 
         $game->computer->setHand(array(
             new CardGraphic("diamonds", 11),
@@ -143,21 +141,22 @@ class GameTest extends TestCase
         $this->assertEquals("Win", $game->displayResult());
 
         // player score > computer score
-        $game->computer->setHand([]);
+        $game->newMatch();
+
         $game->player->setHand(array(new CardGraphic("diamonds", 10)));
 
         $this->assertEquals("Win", $game->displayResult());
 
         // computer score > player score
-        $game->player->setHand([]);
+        $game->newMatch();
+
         $game->computer->setHand(array(new CardGraphic("diamonds", 10)));
 
         $this->assertEquals("Lose", $game->displayResult());
 
         // player score === computer score
 
-        $game->player->setHand([]);
-        $game->computer->setHand([]);
+        $game->newMatch();
 
         $this->assertEquals("Tie", $game->displayResult());
     }
