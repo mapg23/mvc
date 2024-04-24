@@ -50,6 +50,8 @@ class Game
 
     /**
      * This method loads whos turn it is to draw a card from session.
+     * 
+     * @return void
      */
     public function loadStandsFromSession(): void
     {
@@ -59,6 +61,8 @@ class Game
 
     /**
      * Method that saves all variables to session.
+     * 
+     * @return void
      */
     public function saveToSession(): void
     {
@@ -74,6 +78,8 @@ class Game
 
     /**
      * This method is used to represent a round of the game.
+     * 
+     * @return void
      */
     public function round(): void
     {
@@ -112,6 +118,8 @@ class Game
 
     /**
      * Method used for computer to draw multiple cards while the player has stoped.
+     * 
+     * @return void
      */
     public function drawRecursive(): void
     {
@@ -127,6 +135,8 @@ class Game
 
     /**
      * Method that resets all variables in order to start a new match.
+     * 
+     * @return void
      */
     public function newMatch(): void
     {
@@ -140,6 +150,8 @@ class Game
 
     /**
      * Method that returns Lose, Win or Tie depending on the outcome of the match.
+     * 
+     * @return string
      */
     public function displayResult(): string
     {
@@ -170,6 +182,8 @@ class Game
 
     /**
      * Method used to make the playet stand.
+     * 
+     * @return void
      */
     public function stand(): void
     {
@@ -181,6 +195,8 @@ class Game
 
     /**
      * Method used to generate a new deck.
+     * 
+     * @return void
      */
     public function generateDeck(): void
     {
@@ -217,6 +233,7 @@ class Game
     /**
      * Method used to draw a card from the deck.
      * The returned card will be added to the player or computer hand.
+     * 
      * @return array<CardGraphic>
      */
     public function drawCard(int $amount = 1): array
@@ -260,13 +277,15 @@ class Game
      * Method used to get the deck.
      * @return array<CardGraphic>
      */
-    public function getDeck()
+    public function getDeck(): array
     {
         return $this->deck;
     }
 
     /**
      * Method used to get the size of the deck.
+     * 
+     * @return int
      */
     public function getDeckSize(): int
     {
