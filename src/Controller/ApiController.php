@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Card\DeckOfCards;
 use App\Game\Game;
+use App\Controller\GameController;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -149,7 +151,9 @@ class ApiController extends AbstractController
         SessionInterface $session
     ): Response {
 
-        $game = new Game($session);
+        $gameController = new GameController();
+
+        $game = new Game($gameController->getSessionData($session));
 
         $data = $game->getData();
 

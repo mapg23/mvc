@@ -4,7 +4,6 @@ namespace App\Game;
 
 use App\Card\CardGraphic;
 use App\Card\CardHand;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Class that represents the game itself.
@@ -22,58 +21,25 @@ class Game
     public CardHand $computer;
     public CardHand $player;
 
-    private SessionInterface $session;
-
     /**
      * Method that executes on start.
-     * @param SessionInterface $session, this is the session that store all data.
+     * @param array <mixed> $data
      */
-    public function __construct(SessionInterface $session)
+    public function __construct(array $data)
     {
-        $this->session = $session;
+        $this->generateDeck();
 
-        $this->setDeck($this->session->get("game_deck"));
-
-        $this->player = new CardHand($this->session->get("p_hand"));
-        $this->computer = new CardHand($this->session->get("c_hand"));
-
-        if ($this->session->has("p_stand")) {
-            $this->loadStandsFromSession();
+        if (!is_null($data['deck'])) {
+            $this->setDeck($data['deck']);
         }
 
-        if ($this->session->has("result")) {
-            $this->result = $this->session->get("result");
-        }
+        $this->player = new CardHand($data['p_hand']);
+        $this->computer = new CardHand($data['c_hand']);
 
-        $this->saveToSession();
-    }
+        $this->computer->setStand(($data['c_stand'] !== null) ? $data['c_stand'] : false);
+        $this->player->setStand(($data['p_stand'] !== null) ? $data['p_stand'] : false);
 
-    /**
-     * This method loads whos turn it is to draw a card from session.
-     *
-     * @return void
-     */
-    public function loadStandsFromSession(): void
-    {
-        $this->player->setStand($this->session->get("p_stand"));
-        $this->computer->setStand($this->session->get("c_stand"));
-    }
-
-    /**
-     * Method that saves all variables to session.
-     *
-     * @return void
-     */
-    public function saveToSession(): void
-    {
-        $this->session->set("p_hand", $this->player->getHand());
-        $this->session->set("c_hand", $this->computer->getHand());
-        $this->session->set("game_deck", $this->deck);
-
-        $this->session->set("p_stand", $this->player->getStop());
-        $this->session->set("c_stand", $this->computer->getStop());
-        $this->session->set("end_of_match", $this->endOfMatch);
-        $this->session->set("result", $this->result);
+        $this->result = $data['res'] !== null ? $data['res'] : "";
     }
 
     /**
@@ -83,12 +49,10 @@ class Game
      */
     public function round(): void
     {
-        $this->loadStandsFromSession();
 
         if ($this->player->getScore() > 21) {
             $this->player->setStand(true);
             $this->result = $this->displayResult();
-            $this->saveToSession();
             return;
         }
 
@@ -99,20 +63,17 @@ class Game
         if ($this->player->getStop()) {
             $this->drawRecursive();
             $this->result = $this->displayResult();
-            $this->saveToSession();
             return;
         }
 
         if ($this->computer->getStop()) {
             $this->player->add($this->drawCard(1));
-            $this->saveToSession();
             return;
         }
 
         $this->player->add($this->drawCard(1));
         $this->computer->add($this->drawCard(1));
 
-        $this->saveToSession();
         return;
     }
 
@@ -125,7 +86,6 @@ class Game
     {
         if ($this->computer->getScore() >= 17) {
             $this->computer->setStand(true);
-            $this->saveToSession();
             return;
         }
 
@@ -144,8 +104,6 @@ class Game
         $this->computer = new CardHand();
         $this->endOfMatch = false;
         $this->result = "";
-
-        $this->saveToSession();
     }
 
     /**
@@ -176,8 +134,6 @@ class Game
         }
 
         return "Tie";
-
-
     }
 
     /**
@@ -188,7 +144,6 @@ class Game
     public function stand(): void
     {
         $this->player->setStand(true);
-        $this->saveToSession();
 
         $this->round();
     }
@@ -214,20 +169,39 @@ class Game
      *
      * @return array<string, array<CardGraphic> |bool|int|string>
      */
+
+
+    /**
+     * Method used to store data to session.
+     * @return array <string, array<CardGraphic> |bool|int|string>
+     */
+    public function saveData(): array
+    {
+        return [
+            "deck" => $this->getDeck(),
+            "p_hand" => $this->player->getHand(),
+            "c_hand" => $this->computer->getHand(),
+            "p_stand" => $this->player->getStop(),
+            "c_stand" => $this->computer->getStop(),
+            "res" => $this->result
+        ];
+    }
+
+    /**
+     * Method used to display data to twig files.
+     * @return array <string, array<CardGraphic> |bool|int|string>
+     */
     public function getData(): array
     {
-        $data = [
+        return [
+            "deck" => $this->getDeck(),
             "p_hand" => $this->player->getHand(),
             "p_score" => $this->player->getScore(),
-
             "c_hand" => $this->computer->getHand(),
             "c_score" => $this->computer->getScore(),
-
             "end_of_match" => $this->endOfMatch,
             "res" => $this->result
         ];
-
-        return $data;
     }
 
     /**

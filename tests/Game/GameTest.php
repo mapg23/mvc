@@ -12,15 +12,29 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class GameTest extends TestCase
 {
-    private SessionInterface $session;
     /**
-     * Method that invokes a Session mock.
-     *
-     * @return void
+     * Method used to to create data that represents session data.
+     * @param array<mixed> $deck
+     * @param array<mixed> $pHand
+     * @param array<mixed> $cHand
+     * @return array<mixed>
      */
-    protected function setUp(): void
-    {
-        $this->session = $this->createMock(SessionInterface::class);
+    private function createData(
+        array $deck = null,
+        array $pHand = null,
+        array $cHand = null,
+        bool $pStand = null,
+        bool $cStand = null,
+        string $res = null
+    ): array {
+        return [
+            'deck' => $deck,
+            'p_hand' => $pHand,
+            'c_hand' => $cHand,
+            'p_stand' => $pStand,
+            'c_stand' => $cStand,
+            'res' => $res,
+        ];
     }
 
     /**
@@ -30,7 +44,7 @@ class GameTest extends TestCase
      */
     public function testCreatedProperly(): void
     {
-        $game = new Game($this->session);
+        $game = new Game($this->createData());
 
         $this->assertInstanceOf("\App\Game\Game", $game);
     }
@@ -43,32 +57,34 @@ class GameTest extends TestCase
      */
     public function testRounds(): void
     {
-        $game = new Game($this->session);
-
-        // player score > 21
-        $game->player->setHand(array(
+        $hand = array(
             new CardGraphic("diamonds", 10),
             new CardGraphic("diamonds", 12),
             new CardGraphic("diamonds", 13),
-        ));
+        );
+
+        $game = new Game($this->createData(null, $hand));
+
+        // player score > 21
 
         $game->round();
         $this->assertTrue($game->player->getStop());
         $this->assertEquals("Lose", $game->result);
 
         // computer score > 17
-        $game->newMatch();
 
-        $game->computer->setHand(array(
+        $hand = array(
             new CardGraphic("diamonds", 10),
             new CardGraphic("diamonds", 8),
-        ));
+        );
+
+        $game = new Game($this->createData(null, null, $hand));
 
         $game->round();
         $this->assertTrue($game->computer->getStop());
 
         // computer has stopped.
-        $game->newMatch();
+        $game = new Game($this->createData());
 
         $this->assertEquals([], $game->player->getHand());
 
@@ -78,7 +94,7 @@ class GameTest extends TestCase
         $this->assertNotEquals([], $game->player->getHand());
 
         // no condition
-        $game->newMatch();
+        $game = new Game($this->createData());
 
         $this->assertEquals([], $game->player->getHand());
         $this->assertEquals([], $game->computer->getHand());
@@ -97,15 +113,16 @@ class GameTest extends TestCase
      */
     public function testNewMatch(): void
     {
-        $game = new Game($this->session);
-
-        $game->player->setHand(array(
+        $playerHand = array(
             new CardGraphic("diamonds", 2)
-        ));
+        );
 
-        $game->computer->setHand(array(
+        $computerHand = array(
             new CardGraphic("diamonds", 2)
-        ));
+        );
+
+        $game = new Game($this->createData(null, $playerHand, $computerHand));
+
         $game->endOfMatch = true;
         $game->result = "old";
 
@@ -127,45 +144,49 @@ class GameTest extends TestCase
      */
     public function testDisplayResult(): void
     {
-        $game = new Game($this->session);
-
         // player score >= 22
-        $game->player->setHand(array(
+        $hand = array(
             new CardGraphic("diamonds", 11),
             new CardGraphic("diamonds", 12),
             new CardGraphic("diamonds", 10),
-        ));
+        );
+
+        $game = new Game($this->createData(null, $hand));
 
         $this->assertEquals("Lose", $game->displayResult());
 
         // computer score >= 22
-        $game->newMatch();
 
-        $game->computer->setHand(array(
+        $hand = array(
             new CardGraphic("diamonds", 11),
             new CardGraphic("diamonds", 12),
             new CardGraphic("diamonds", 10),
-        ));
+        );
+
+        $game = new Game($this->createData(null, null, $hand));
 
         $this->assertEquals("Win", $game->displayResult());
 
         // player score > computer score
-        $game->newMatch();
+        $hand = array(
+            new CardGraphic("diamonds", 10)
+        );
 
-        $game->player->setHand(array(new CardGraphic("diamonds", 10)));
+        $game = new Game($this->createData(null, $hand));
 
         $this->assertEquals("Win", $game->displayResult());
 
         // computer score > player score
-        $game->newMatch();
+        $hand = array(
+            new CardGraphic("diamonds", 10)
+        );
 
-        $game->computer->setHand(array(new CardGraphic("diamonds", 10)));
+        $game = new Game($this->createData(null, null, $hand));
 
         $this->assertEquals("Lose", $game->displayResult());
 
         // player score === computer score
-
-        $game->newMatch();
+        $game = new Game($this->createData());
 
         $this->assertEquals("Tie", $game->displayResult());
     }
@@ -178,7 +199,7 @@ class GameTest extends TestCase
      */
     public function testStand(): void
     {
-        $game = new Game($this->session);
+        $game = new Game($this->createData());
         $game->stand();
 
         $this->assertTrue($game->player->getStop());
@@ -192,7 +213,7 @@ class GameTest extends TestCase
      */
     public function testGenerateDeck(): void
     {
-        $game = new Game($this->session);
+        $game = new Game($this->createData());
         $deck = $game->getDeck();
 
         $game->generateDeck();
@@ -210,7 +231,7 @@ class GameTest extends TestCase
      */
     public function testGetData(): void
     {
-        $game = new Game($this->session);
+        $game = new Game($this->createData());
 
 
         $data = $game->getData();
@@ -232,7 +253,7 @@ class GameTest extends TestCase
      */
     public function testDrawCard(): void
     {
-        $game = new Game($this->session);
+        $game = new Game($this->createData());
         $game->generateDeck();
         $drawnCard = $game->drawCard();
 
@@ -251,7 +272,10 @@ class GameTest extends TestCase
      */
     public function testSetDeck(): void
     {
-        $game = new Game($this->session);
+        $game = new Game($this->createData());
+
+        $this->assertNotEquals([], $game->getDeck());
+
         $deck = $game->getDeck();
 
         $newDeck = array(
@@ -263,19 +287,26 @@ class GameTest extends TestCase
 
         $this->assertNotEquals($deck, $game->getDeck());
         $this->assertEqualsCanonicalizing($newDeck, $game->getDeck());
-    }
-    /**
-     * Test method for Game::getDeckSize().
-     * This method will make sure that the return type is of Int.
-     * It will also check that its equal to sizeof() the deck.
-     *
-     * @return void
-     */
-    public function testGetDeckSize(): void
-    {
-        $game = new Game($this->session);
+
+        $game->setDeck(null);
+
+        $this->assertNotEquals([], $game->getDeck());
 
         $this->assertIsInt($game->getDeckSize());
         $this->assertEquals(sizeof($game->getDeck()), $game->getDeckSize());
+    }
+
+    public function testSaveData(): void
+    {
+        $game = new Game($this->createData());
+        $data = $game->saveData();
+
+
+        $this->assertArrayHasKey('deck', $data);
+        $this->assertArrayHasKey('p_hand', $data);
+        $this->assertArrayHasKey('c_hand', $data);
+        $this->assertArrayHasKey('p_stand', $data);
+        $this->assertArrayHasKey('c_stand', $data);
+        $this->assertArrayHasKey('res', $data);
     }
 }

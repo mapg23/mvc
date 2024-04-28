@@ -286,6 +286,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-GameController.html"
         },                {
+            "fqsen": "\\App\\Controller\\GameController\u003A\u003AgetSessionData\u0028\u0029",
+            "name": "getSessionData",
+            "summary": "",
+            "url": "classes/App-Controller-GameController.html#method_getSessionData"
+        },                {
+            "fqsen": "\\App\\Controller\\GameController\u003A\u003AsaveSessionData\u0028\u0029",
+            "name": "saveSessionData",
+            "summary": "",
+            "url": "classes/App-Controller-GameController.html#method_saveSessionData"
+        },                {
             "fqsen": "\\App\\Controller\\GameController\u003A\u003Agame\u0028\u0029",
             "name": "game",
             "summary": "",
@@ -451,16 +461,6 @@ Search.appendIndex(
             "summary": "Method\u0020that\u0020executes\u0020on\u0020start.",
             "url": "classes/App-Game-Game.html#method___construct"
         },                {
-            "fqsen": "\\App\\Game\\Game\u003A\u003AloadStandsFromSession\u0028\u0029",
-            "name": "loadStandsFromSession",
-            "summary": "This\u0020method\u0020loads\u0020whos\u0020turn\u0020it\u0020is\u0020to\u0020draw\u0020a\u0020card\u0020from\u0020session.",
-            "url": "classes/App-Game-Game.html#method_loadStandsFromSession"
-        },                {
-            "fqsen": "\\App\\Game\\Game\u003A\u003AsaveToSession\u0028\u0029",
-            "name": "saveToSession",
-            "summary": "Method\u0020that\u0020saves\u0020all\u0020variables\u0020to\u0020session.",
-            "url": "classes/App-Game-Game.html#method_saveToSession"
-        },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003Around\u0028\u0029",
             "name": "round",
             "summary": "This\u0020method\u0020is\u0020used\u0020to\u0020represent\u0020a\u0020round\u0020of\u0020the\u0020game.",
@@ -491,9 +491,14 @@ Search.appendIndex(
             "summary": "Method\u0020used\u0020to\u0020generate\u0020a\u0020new\u0020deck.",
             "url": "classes/App-Game-Game.html#method_generateDeck"
         },                {
+            "fqsen": "\\App\\Game\\Game\u003A\u003AsaveData\u0028\u0029",
+            "name": "saveData",
+            "summary": "Method\u0020used\u0020to\u0020store\u0020data\u0020to\u0020session.",
+            "url": "classes/App-Game-Game.html#method_saveData"
+        },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AgetData\u0028\u0029",
             "name": "getData",
-            "summary": "Method\u0020used\u0020to\u0020return\u0020all\u0020data\u0020from\u0020the\u0020game.",
+            "summary": "Method\u0020used\u0020to\u0020display\u0020data\u0020to\u0020twig\u0020files.",
             "url": "classes/App-Game-Game.html#method_getData"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AdrawCard\u0028\u0029",
