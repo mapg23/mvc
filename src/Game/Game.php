@@ -164,14 +164,6 @@ class Game
     }
 
     /**
-     * Method used to return all data from the game.
-     * The array is used for display in the twig files.
-     *
-     * @return array<string, array<CardGraphic> |bool|int|string>
-     */
-
-
-    /**
      * Method used to store data to session.
      * @return array <string, array<CardGraphic> |bool|int|string>
      */

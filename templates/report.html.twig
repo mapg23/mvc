@@ -121,37 +121,27 @@
 
                 Jag återanvände vissa av klasserna från kortleks uppgiften 
                 vilket gjorde att jag behövde skriva unit tester till alla dess klasser. <br>
-                Unit testerna för dessa klasser uppfylde 96 procent kodtäckning. <br>
-                Sedan skapade jag en ny klass som heter Game, denna klassen fick 97 procent kodtäckning. <br>
+                Unit testerna för dessa klasser uppfyller ~95 procent kodtäckning. <br>
+                Sedan skapade jag en ny klass som heter Game, denna klassen fick ~99 procent kodtäckning. <br>
                 <br>
 
-                {# Upplever du din egen kod som “testbar kod” 
-                eller finns det delar i koden som är mer eller mindre testbar och 
-                finns det saker som kan göras för att förbättra kodens testbarhet? #}
-
-                Av koden jag skrivit kunde nästan all kod testas förutom den kod som har med sessioner att göra,
-                för att testa koden med sessioner behöver man mocka ett session interface vilket jag inte riktigt förstod hur jag skulle göra. <br>
-                <br>
-                {# Valde du att skriva om delar av din kod för att förbättra den eller göra den mer testbar, 
-                om så berätta lite hur du tänkte. #}
-
-                För att enklare kunna unit testa min kod valde jag att göra om vissa variablar från protected eller private till publika,
-                jag valde även att skapa ett par nya getters för vissa av klass variablerna. Utvöer detta skrev jag inte om någon annan kod. <br>
-                
-                <br>
-
-                {# Fundera över om du anser att testbar kod är något som kan identifiera “snygg och ren kod”. #}
-
-                För att ha en kod som är enkel att testa behöver koden oftast vara ren skriven,
-                dock behöver den inte vara snygg, men om man skriver ren kod resulterar det oftast i snygg kod.
+                Jag upplever min kod som ganska testbar, 
+                jag hade i åtanke att spelet skulle kunna köras i konsolen när jag skrev koden. <br>
 
                 <br>
 
-                {# Vilken är din TIL för detta kmom? #}
+                Jag valde att skriva om all session logik som låg i min game klass och flyttade den till kontrollern. <br>
+                Jag skrev om min konstruktor och gav den en array som parameter där all session data tas läggs till. <br>
+                I kontrollern skapade jag två nya metoder för att minska antalet kod i alla routes. <br>
+                För att enklare kunna testa min game klass skapade jag ett par nya getters för mina instansvariabler. <br>
+                <br>
 
-                Min Til för detta kursmoment är att 
+                För att ha en kod som är enkel att testa behöver koden oftast vara ren skriven, <br>
+                dock behöver den inte vara snygg, men om man skriver ren kod resulterar det oftast i snygg kod. <br>
 
-            
+                <br>
+
+                Min Til för detta kursmoment är vad phpdoc är som automatiskt dokumenterar php-kod. <br>
             </p>
         </div>
 

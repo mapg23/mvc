@@ -551,11 +551,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Game-Game.html#property_player"
         },                {
-            "fqsen": "\\App\\Game\\Game\u003A\u003A\u0024session",
-            "name": "session",
-            "summary": "",
-            "url": "classes/App-Game-Game.html#property_session"
-        },                {
             "fqsen": "\\App\\Kernel",
             "name": "Kernel",
             "summary": "",
