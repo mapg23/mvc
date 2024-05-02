@@ -1,0 +1,46 @@
+
+.library-form {
+    margin: 0 auto;
+    padding: 1rem;
+    max-width: 400px;
+    background-color: $foreground-color;
+    border-radius: 10px;
+    input {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 1rem;
+    }
+    
+    .library-label {
+        margin-top: 1rem;
+    }
+    
+}
+
+
+.library-table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+
+    td, th{
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #232323;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #04AA6D;
+        color: white;
+    }
+}

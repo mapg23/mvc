@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add a new book{% endblock %}
+
+{% block body %}
+
+<main class="main library">
+
+    <form class="library-form" action="add" method="POST">
+        <label for="title" class="library-label">Title:</label>
+        <input type="text" name="title" placeholder="Title">
+        <label for="isnb" class="library-label">ISBN:</label>
+        <input type="text" name="isbn" placeholder="isbn">
+        <label for="author" class="library-label">Author:</label>
+        <input type="text" name="author" placeholder="author">
+        <label for="Image" class="library-label">Book cover:</label>
+        <input type="text" name="image" placeholder="link to image">
+
+        <input type="submit" value="Add">
+    </form>
+
+</main>
+
+{% endblock %}
