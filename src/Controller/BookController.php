@@ -19,7 +19,7 @@ class BookController extends AbstractController
         return $this->render('book/index.html.twig', [
             'controller_name' => 'BookController',
         ]);
-    }   
+    }
 
     #[Route('/library/create', name: 'app_book_create')]
     public function createBook(): Response
@@ -66,7 +66,7 @@ class BookController extends AbstractController
     public function showSpecificBook(
         BookRepository $bookRepository,
         string $isbn
-    ) : Response {
+    ): Response {
         $book = $bookRepository->findByIsbnField($isbn);
 
         $data = [
@@ -100,8 +100,7 @@ class BookController extends AbstractController
     public function updateBook(
         ManagerRegistry $doctrine,
         string $isbn
-    ) : Response
-    {
+    ): Response {
         $entityManager = $doctrine->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneBy(['isbn' => $isbn]);
 

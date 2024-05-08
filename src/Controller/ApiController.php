@@ -181,7 +181,7 @@ class ApiController extends AbstractController
         ];
 
         $response = new Response();
-        $jsonData = json_encode($data);
+        $jsonData = json_encode($data) ?: null;
         $response->setContent($jsonData);
         $response->headers->set('Content-Type', 'application/json');
 
@@ -190,18 +190,20 @@ class ApiController extends AbstractController
 
     #[Route("/api/library/books/{isbn}", name: "api_specific_book", methods: ["GET"])]
     public function apiBookByIsbn(
-        BookRepository $bookRepository,
+        ManagerRegistry $doctrine,
         string $isbn
     ): Response {
-        $books = $bookRepository->findByIsbnField($isbn);
+        $entityManager = $doctrine->getManager();
+
+        /** @phpstan-ignore-next-line */
+        $book = $entityManager->getRepository(Book::class)->findOneAndReturnAsArray($isbn);
 
         $data = [
-            'book' => $books
+            'book' => $book
         ];
 
-
         $response = new Response();
-        $jsonData = json_encode($data);
+        $jsonData = json_encode($data) ?: null;
         $response->setContent($jsonData);
         $response->headers->set('Content-Type', 'application/json');
 

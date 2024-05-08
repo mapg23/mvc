@@ -16,56 +16,50 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
-        /**
-        * @return Book[] Returns an array of Book objects
-        */
-       public function findByIsbnField($value): array
-       {
-           return $this->createQueryBuilder('b')
-               ->andWhere('b.isbn = :val')
-               ->setParameter('val', $value)
-               ->orderBy('b.id', 'ASC')
-               ->setMaxResults(10)
-               ->getQuery()
-               ->getResult()
-           ;
-       }
+    /**
+    * @return Book[] Returns an array of Book objects
+    */
+    public function findByIsbnField(string $value): array
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.isbn = :val')
+            ->setParameter('val', $value)
+            ->orderBy('b.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
-       public function findAllAndReturnAsArray(): array
-        {
-            $conn = $this->getEntityManager()->getConnection();
+    /**
+    * @return array<mixed> Book[] Returns an array of Book objects
+    */
+    public function findOneAndReturnAsArray(string $isbn): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
 
-            $sql = '
+        $sql = '
+                SELECT * FROM book WHERE isbn = :value
+            ';
+
+        $resultSet = $conn->executeQuery($sql, ['value' => $isbn]);
+
+        return $resultSet->fetchAllAssociative();
+    }
+
+    /**
+    * @return array<mixed> Book[] Returns an array of Book objects
+    */
+    public function findAllAndReturnAsArray(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
                 SELECT * FROM book
             ';
 
-            $resultSet = $conn->executeQuery($sql);
+        $resultSet = $conn->executeQuery($sql);
 
-            return $resultSet->fetchAllAssociative();
-        }
-
-    //    /**
-    //     * @return Book[] Returns an array of Book objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('b')
-    //            ->andWhere('b.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('b.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Book
-    //    {
-    //        return $this->createQueryBuilder('b')
-    //            ->andWhere('b.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        return $resultSet->fetchAllAssociative();
+    }
 }

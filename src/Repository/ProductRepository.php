@@ -18,10 +18,10 @@ class ProductRepository extends ServiceEntityRepository
 
     /**
      * Find all producs having a value above the specified one with SQL.
-     * 
-     * @return [][] Returns an array of arrays (i.e. a raw data set)
+     *
+     * @return array<mixed> [][] Returns an array of arrays (i.e. a raw data set)
      */
-    public function findByMinimumValue2($value): array
+    public function findByMinimumValue2(int $value): array
     {
         $conn = $this->getEntityManager()->getConnection();
 
@@ -36,13 +36,12 @@ class ProductRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     }
 
-
     /**
      * Find all producs having a value above the specified one.
-     * 
-     * @return Product[] Returns an array of Product objects
+     *
+     * @return array<mixed> Product[] Returns an array of Product objects
      */
-    public function findByMinimumValue($value): array
+    public function findByMinimumValue(int $value): array
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.value >= :value')
