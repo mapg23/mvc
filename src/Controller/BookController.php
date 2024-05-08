@@ -67,13 +67,76 @@ class BookController extends AbstractController
         BookRepository $bookRepository,
         string $isbn
     ) : Response {
-        $book = $bookRepository->find($isbn);
+        $book = $bookRepository->findByIsbnField($isbn);
 
         $data = [
             'book' => $book
         ];
 
         return $this->render('book/specific.html.twig', $data);
+    }
+
+    #[Route("/library/delete/{isbn}", name: 'app_book_delete')]
+    public function deleteBook(
+        ManagerRegistry $doctrine,
+        string $isbn
+    ): Response {
+        $entityManager = $doctrine->getManager();
+        $book = $entityManager->getRepository(Book::class)->findOneBy(['isbn' => $isbn]);
+
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No book with that isbn found'
+            );
+        }
+
+        $entityManager->remove($book);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_book_show_all');
+    }
+
+    #[Route("/library/update/{isbn}", name: 'app_book_update', methods: ['GET'])]
+    public function updateBook(
+        ManagerRegistry $doctrine,
+        string $isbn
+    ) : Response
+    {
+        $entityManager = $doctrine->getManager();
+        $book = $entityManager->getRepository(Book::class)->findOneBy(['isbn' => $isbn]);
+
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No book with that isbn found'
+            );
+        }
+
+        $data = [
+            'book' => $book
+        ];
+
+        return $this->render('book/update.html.twig', $data);
+    }
+
+    #[Route("/library/update/{isbn}", name: 'app_book_append_update', methods: ['POST'])]
+    public function appendUpdates(
+        Request $request,
+        ManagerRegistry $doctrine,
+        string $isbn
+    ): Response {
+        $entityManager = $doctrine->getManager();
+        $data = $request->request->all();
+
+        $book = $entityManager->getRepository(Book::class)->findOneBy(['isbn' => $isbn]);
+
+        $book->setTitle($data['title']);
+        $book->setIsbn($data['isbn']);
+        $book->setAuthor($data['author']);
+        $book->setImage($data['image']);
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_book_show_all');
     }
 
 }

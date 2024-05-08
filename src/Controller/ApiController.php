@@ -6,6 +6,11 @@ use App\Card\DeckOfCards;
 use App\Game\Game;
 use App\Controller\GameController;
 
+use App\Entity\Book;
+use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\BookRepository;
+
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -160,6 +165,44 @@ class ApiController extends AbstractController
         $response = new Response();
         $parsedData = json_encode($data) ?: null;
         $response->setContent($parsedData);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    #[Route("/api/library/books", name: "api_books", methods: ["GET"])]
+    public function apiAllBooks(
+        BookRepository $bookRepository
+    ): Response {
+        $books = $bookRepository->findAllAndReturnAsArray();
+
+        $data = [
+            'book' => $books
+        ];
+
+        $response = new Response();
+        $jsonData = json_encode($data);
+        $response->setContent($jsonData);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    #[Route("/api/library/books/{isbn}", name: "api_specific_book", methods: ["GET"])]
+    public function apiBookByIsbn(
+        BookRepository $bookRepository,
+        string $isbn
+    ): Response {
+        $books = $bookRepository->findByIsbnField($isbn);
+
+        $data = [
+            'book' => $books
+        ];
+
+
+        $response = new Response();
+        $jsonData = json_encode($data);
+        $response->setContent($jsonData);
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;

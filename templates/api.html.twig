@@ -69,6 +69,26 @@
                 <a href="{{ path('api_game') }}">Go to</a>
             </div>
 
+            <div class="api-route">
+                <h1>GET api/library/books</h1>
+
+                <p>
+                    Denna api visar upp alla böcker i biblioteket
+                </p>
+
+                <a href="{{ path('api_books') }}">Go to</a>
+            </div>
+
+            <div class="api-route">
+                <h1>GET api/library/books/:isbn</h1>
+
+                <p>
+                    Denna api visar upp en bok i json struktur med matchande isbn nummer.
+                </p>
+
+                <a href="{{ path('api_specific_book', {'isbn': 9781530051120}) }}">Go to</a>
+            </div>
+
         </div>
 
     </main>

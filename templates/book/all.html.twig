@@ -13,6 +13,8 @@
         <th>Author</th>
         <th>Book cover</th>
         <th>Go to book</th>
+        <th>Update</th>
+        <th>Delete</th>
     </tr>
 
 {% for book in books%}
@@ -21,7 +23,10 @@
         <td>{{ book.getIsbn|e }}</td>
         <td>{{ book.getAuthor|e }}</td>
         <td>{{ book.getImage|e }}</td>
-        <td><a href="#">Go to book</a></td>
+        <td><a href="{{ path('app_book_show_specific', {'isbn': book.getIsbn })}}">Go to book</a></td>
+        <td><a href="{{ path('app_book_update', {'isbn': book.getIsbn })}}">Update book</a></td>
+        <td><a href="{{ path('app_book_delete', {'isbn': book.getIsbn })}}">Delete book</a></td>
+
     </tr>
 
 {% endfor %}

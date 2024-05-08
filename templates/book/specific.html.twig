@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Library{% endblock %}
+
+{% block body %}
+
+<main class="main library">
+
+{% for book in book %}
+
+<h1>Title: {{book.getTitle}}</h1>
+
+<p>
+Isbn: {{book.getIsbn}}
+</p>
+
+<p>
+Author: {{book.getAuthor}}
+</p>
+
+<img src="{{book.getImage}}" alt="Image: {{book.getImage}}">
+
+
+{% endfor %}
+
+</main>
+
+{% endblock %}

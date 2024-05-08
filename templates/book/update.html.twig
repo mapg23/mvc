@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update book{% endblock %}
+
+{% block body %}
+
+<main class="main library">
+
+    <form class="library-form" action="" method="POST">
+        <label for="title" class="library-label">Title:</label>
+        <input type="text" name="title" value="{{book.getTitle}}">
+        <label for="isnb" class="library-label">ISBN:</label>
+        <input type="text" name="isbn" value="{{book.getIsbn}}">
+        <label for="author" class="library-label">Author:</label>
+        <input type="text" name="author" value="{{book.getAuthor}}">
+        <label for="Image" class="library-label">Book cover:</label>
+        <input type="text" name="image" value="{{book.getImage}}">
+
+        <input type="submit" value="Update">
+    </form>
+
+</main>
+
+{% endblock %}
