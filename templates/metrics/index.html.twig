@@ -1,0 +1,117 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Metrics{% endblock %}
+
+{% block body %}
+
+<main class="main metrics">
+    <h1>Metrics</h1>
+
+    <h2>Introduktion</h2>
+
+    <p>
+        {# förklarar de sex C:na och hur de kan påverka kodens kvalitet. 
+        Exemplifiera, där det passar, 
+        med några mätvärden som är kopplad till din egen kod 
+        och ge en kort förklaring av mätvärdet relaterat till kodkvalitet. <br> #}
+
+        Det sex C:na är codestyle, coverage, complexity, cohesion, coupling och crap. <br>
+
+        <br>
+
+        Det första C:et codestyle handlar om hur man skriver sin kod,
+        detta kan inkludera design patterns, men även hur man generellt skriver sin kod. <br>
+        Att ha en bra codestyle är oftast viktigt då det gör det lättare för både dig själv och andra att läsa koden.<br>
+
+        <br>
+
+        Det andra C:et är coverage, detta handlar om hur väl din kod är testad, mer coverage av kod brukar oftast resultera i mindre buggar. <br>
+        Att ha låg coverage måste inte alltid betyda att det finns buggar i koden,
+        min coverage på denna hemsidan är relativt låg på 26 procent, <br>
+        detta är för att jag inte har unit-testat mina controller klasser samt annat som oftast inte behöver testas. <br>
+
+        <br>
+
+        Det tredje C:et är complexity,
+
+
+        <br>
+        <br>
+        
+        Det fjärde C:et är cohesion,
+
+        <br>
+        <br>
+
+        Det femte C:et är coupling,
+
+        <br>
+        <br>
+
+        Det sjätte C:et är crap,
+
+        <br>
+        <br> 
+
+    </p>
+
+    <hr>
+    <h2>Phpmetrics</h2>
+
+    <p>
+    analysera dess rapport för din kod. 
+    Använd mätvärdena för att hitta flaskhalsar och svaga punkter i din kod (minst 3 stycken). 
+    Du vill hitta kod som har förbättringspotential. 
+    Visualisera med någon representativ bild från rapporten. <br>
+    </p>
+
+    <hr>
+    <h2>Scrutinizer</h2>
+
+    <p>
+        och analysera dess rapport för din kod. Gör på samma sätt som du gjorde med Phpmetrics.
+
+        Inkludera klickbara Scrutinizer badges i din rapport för build, coverage och quality.
+        Placera samma badges i din README.md.
+
+
+        I ovan analys så kopplar du dina “findings” till 6C. 
+        Använd gärna något ytterligare mättal som du finner relevant och intressant.
+    </p>
+
+    <hr>
+    <h2>Förbättringar</h2>
+
+    <p>
+    där du väljer minst 3 förbättringar som du vill göra med din kod (gärna fler).
+
+    Exempel på förbättringar kan vara:
+        Fixa issues
+        Öka kodtäckning
+        Fokusera på kvalitetsindex i Scrutinizer
+        Minska komplexiteten i class/metod
+
+    Börja med att skriva om förbättringarna, vad du tänker göra, varför du väljer dem och hur du tror det kommer påverka mätvärdena för kvalitet.
+    Implementera sedan förbättringarna.
+    Analysera därefter rapporterna från phpmetrics och Scrutinizer och notera de nya mätvärdena.
+    Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar.
+
+    </p>
+
+    <hr>
+    <h2>Diskussion</h2>
+
+    <p>
+    där du diskuterar kort kring det du nyss gjort.
+
+    Kan man aktivt jobba med kodkvalitet och “clean code” på detta sättet?
+    Finns det fördelar och kanske nackdelar?
+    Ser du andra möjligheter att jobba mot “clean code”?
+
+    </p>
+
+</main>
+
+</div>
+
+{% endblock %}

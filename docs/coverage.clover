@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1715264291">
-  <project timestamp="1715264291">
+<coverage generated="1715531089">
+  <project timestamp="1715531089">
     <file name="/home/marcus/dev/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
@@ -453,6 +453,14 @@
       <line num="97" type="stmt" count="0"/>
       <metrics loc="100" ncloc="93" classes="1" methods="8" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="35" coveredstatements="0" elements="43" coveredelements="0"/>
     </file>
+    <file name="/home/marcus/dev/dbwebb-kurser/mvc/me/report/src/Controller/MetricsController.php">
+      <class name="App\Controller\MetricsController" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </class>
+      <line num="12" type="method" name="api" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="15" type="stmt" count="0"/>
+      <metrics loc="18" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+    </file>
     <file name="/home/marcus/dev/dbwebb-kurser/mvc/me/report/src/Controller/NavigationControllerTwig.php">
       <class name="App\Controller\NavigationControllerTwig" namespace="global">
         <metrics complexity="4" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="10" coveredelements="0"/>
@@ -692,11 +700,11 @@
       <line num="120" type="stmt" count="3"/>
       <line num="121" type="stmt" count="2"/>
       <line num="124" type="stmt" count="2"/>
-      <line num="125" type="stmt" count="1"/>
-      <line num="128" type="stmt" count="2"/>
+      <line num="125" type="stmt" count="2"/>
+      <line num="128" type="stmt" count="1"/>
       <line num="129" type="stmt" count="1"/>
-      <line num="132" type="stmt" count="2"/>
-      <line num="133" type="stmt" count="2"/>
+      <line num="132" type="stmt" count="1"/>
+      <line num="133" type="stmt" count="1"/>
       <line num="136" type="stmt" count="1"/>
       <line num="144" type="method" name="stand" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="146" type="stmt" count="1"/>
@@ -804,6 +812,6 @@
       <line num="52" type="stmt" count="0"/>
       <metrics loc="80" ncloc="44" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="16" coveredelements="0"/>
     </file>
-    <metrics files="21" loc="1869" ncloc="1710" classes="20" methods="120" coveredmethods="34" conditionals="0" coveredconditionals="0" statements="557" coveredstatements="138" elements="677" coveredelements="172"/>
+    <metrics files="22" loc="1887" ncloc="1728" classes="21" methods="121" coveredmethods="34" conditionals="0" coveredconditionals="0" statements="558" coveredstatements="138" elements="679" coveredelements="172"/>
   </project>
 </coverage>

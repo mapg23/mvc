@@ -381,6 +381,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-GameController.html#method_newGame"
         },                {
+            "fqsen": "\\App\\Controller\\MetricsController",
+            "name": "MetricsController",
+            "summary": "",
+            "url": "classes/App-Controller-MetricsController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\MetricsController\u003A\u003Aapi\u0028\u0029",
+            "name": "api",
+            "summary": "",
+            "url": "classes/App-Controller-MetricsController.html#method_api"
+        },                {
             "fqsen": "\\App\\Controller\\NavigationControllerTwig",
             "name": "NavigationControllerTwig",
             "summary": "",
@@ -693,7 +703,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AdrawRecursive\u0028\u0029",
             "name": "drawRecursive",
-            "summary": "Method\u0020used\u0020for\u0020computer\u0020to\u0020draw\u0020multiple\u0020cards\u0020while\u0020the\u0020player\u0020has\u0020stoped.",
+            "summary": "Method\u0020used\u0020for\u0020computer\u0020to\u0020draw\u0020multiple\u0020cards\u0020while\u0020the\u0020player\u0020has\u0020stopped.",
             "url": "classes/App-Game-Game.html#method_drawRecursive"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AnewMatch\u0028\u0029",
@@ -708,7 +718,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003Astand\u0028\u0029",
             "name": "stand",
-            "summary": "Method\u0020used\u0020to\u0020make\u0020the\u0020playet\u0020stand.",
+            "summary": "Method\u0020used\u0020to\u0020make\u0020the\u0020player\u0020stand.",
             "url": "classes/App-Game-Game.html#method_stand"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AgenerateDeck\u0028\u0029",

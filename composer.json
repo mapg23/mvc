@@ -102,6 +102,13 @@
             "@phpmd",
             "@phpstan",
             "@csfix"
+        ],
+
+        "all": [
+            "@lint",
+            "@phpunit",
+            "@phpdoc",
+            "@phpmetrics"
         ]
 
     },

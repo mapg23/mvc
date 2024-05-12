@@ -347,6 +347,18 @@
   color: white;
 }
 
+.metrics h1, .metrics h2, .metrics h3 {
+  font-family: "Zilla Slab", serif;
+  text-align: left;
+  text-decoration: underline;
+}
+.metrics p {
+  font-family: "Nunito", sans-serif;
+  font-size: medium;
+  text-align: left;
+  text-decoration: none;
+}
+
 body, html {
   background-color: #202020;
 }

@@ -78,7 +78,7 @@ class Game
     }
 
     /**
-     * Method used for computer to draw multiple cards while the player has stoped.
+     * Method used for computer to draw multiple cards while the player has stopped.
      *
      * @return void
      */
@@ -137,7 +137,7 @@ class Game
     }
 
     /**
-     * Method used to make the playet stand.
+     * Method used to make the player stand.
      *
      * @return void
      */
