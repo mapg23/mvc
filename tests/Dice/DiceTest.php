@@ -21,4 +21,19 @@ class DiceTest extends TestCase
         $res = $die->getAsString();
         $this->assertNotEmpty($res);
     }
+
+    /**
+     * Method that tests if roll, rolls correctly.
+     * 
+     * @return void
+     */
+    public function testRoll(): void
+    {
+        $die = new Dice();
+        
+        $die->roll();
+
+        $this->assertGreaterThanOrEqual(1, $die->getValue());
+        $this->assertLessThanOrEqual(6, $die->getValue());
+    }
 }

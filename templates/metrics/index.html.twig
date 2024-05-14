@@ -10,12 +10,7 @@
     <h2>Introduktion</h2>
 
     <p>
-        {# förklarar de sex C:na och hur de kan påverka kodens kvalitet. 
-        Exemplifiera, där det passar, 
-        med några mätvärden som är kopplad till din egen kod 
-        och ge en kort förklaring av mätvärdet relaterat till kodkvalitet. <br> #}
-
-        Det sex C:na är codestyle, coverage, complexity, cohesion, coupling och crap. <br>
+        De sex C:na är codestyle, coverage, complexity, cohesion, coupling och crap. <br>
 
         <br>
 
@@ -32,69 +27,102 @@
 
         <br>
 
-        Det tredje C:et är complexity,
+        Det tredje C:et är complexity. En hög complexity resulterar oftast i att koden blir svårare att underhålla och svårare att använda sig av. <br>
+        En kod med hög complexity brukar oftast ha högre antal bugar per klass än andra klasser.<br>
 
-
-        <br>
         <br>
         
-        Det fjärde C:et är cohesion,
+        Det fjärde C:et är cohesion, cohesion handlar om hur väl metoder och variabler passar in i klassen. <br>
+        Med cohesion vill man oftast ha ett så lågt tal som möjligt och klasser med hög cohesion border oftast delas upp till flera olika klasser. <br>
+        Ett exempel på detta är mina Game klass i black jack spelet som har en cohesion på 134, denna klassen används både som spelet, spelaren och dealern. <br>
 
         <br>
-        <br>
 
-        Det femte C:et är coupling,
-
-        <br>
-        <br>
-
-        Det sjätte C:et är crap,
+        Det femte C:et är coupling, coupling är ett mätvärde för hur många av klasserna som är beroende av varandra. <br>
+        Coupling mäts i utgående connections (AC), samt inkommande connections (EC). <br>
+        Att ha ett högt utgående antal kan tyda på att den klassen använder sig av många andra klasser.<br>
+        Om en klass har ett högt inkommande antal kan det bero på att många andra klasser är beroende av just denna klass. <br>
 
         <br>
-        <br> 
 
+        Det sjätte C:et är crap, crap står för Change Risk Analyzer and Predictor (CRAP). <br>
+        Crap är ett mätvärde för hur mycket tid det kommer ta för att fixa till dåliga (crappy) metoder. <br>
+        För att minska antalet crap behöver antingen metoden bli mindre complex eller införskaffa sig flera unit-tester.
     </p>
 
     <hr>
     <h2>Phpmetrics</h2>
 
+    <img class="metric-img" src="{{ asset('img/phpmetrics.png')}}" alt="phpmetrics image">
+
     <p>
-    analysera dess rapport för din kod. 
-    Använd mätvärdena för att hitta flaskhalsar och svaga punkter i din kod (minst 3 stycken). 
-    Du vill hitta kod som har förbättringspotential. 
-    Visualisera med någon representativ bild från rapporten. <br>
+        Phpmetrics genererade nio violations, ett genomsnittsvärde på 4.05 på komplexitet per klass och ett genomsnittsvärde på 0.13 buggar per klass av min kod. <br>
+        Dessa mätvärden visade att min Game klass kan vara buggad då den har ganska stor volym, mycket coupling och hög difficulty. <br>
+        Detta hade kunnat fixas genom att dela upp game klassen och minska dess beroende av andra klasser.
+    </p>
+        <img class="metric-img" src="{{ asset('img/game-stats.png')}}" alt="Game stats image">
+        <img class="metric-img" src="{{ asset('img/game-stats_01.png')}}" alt="Game stats image">
+
+    <p>
+        Min ApiController klass följer inte "single responsibility principle" principen, <br>
+        klassen har även för många publika metoder och använder sig av för många externa klasser. <br>
+        Detta kan fixas genom att dela upp klassen i flera olika klasser, där var och en av klasserna har ett enda syfte. <br>
+    </p>
+
+    <img class="metric-img" src="{{ asset('img/api-controller.png')}}" alt="Api controller image">
+
+    <p>
+        Min ProductController klass följer heller inte single responsibility principen och har blivit ett god object, <br>
+        detta beror på för många metoder med olika syften och en användning av för många externa klasser. <br>
     </p>
 
     <hr>
     <h2>Scrutinizer</h2>
 
+    <div class="badge-container">
+        <img class="metric-badge" src="https://scrutinizer-ci.com/g/mapg23/mvc/badges/quality-score.png?b=main" alt="Scrutinizer badge">
+        <img class="metric-badge" src="https://scrutinizer-ci.com/g/mapg23/mvc/badges/coverage.png?b=main" alt="Scrutinizer badge">
+        <img class="metric-badge" src="https://scrutinizer-ci.com/g/mapg23/mvc/badges/build.png?b=main" alt="Scrutinizer badge">
+    </div>
+
     <p>
-        och analysera dess rapport för din kod. Gör på samma sätt som du gjorde med Phpmetrics.
+        Analysen av scrutinizer gav en kvalitets score på 9.97 med en kod-täckning på 26 procent och en build som klarats. <br>
+        För att öka kvalitets score från analysen behöver metoden calculateScore i CardHand klassen fixas till. <br>
+        Metoden har betyget B men behöver ett A för att analysen ska få ett kvalitets score på 10. <br>
+        Enligt scrutinizer är calculateScore för komplex för att uppnå betyget A. <br>
+        Metoden har ett crap score på 7 och behöver fler conditions. <br>
 
-        Inkludera klickbara Scrutinizer badges i din rapport för build, coverage och quality.
-        Placera samma badges i din README.md.
+        <br>
 
-
-        I ovan analys så kopplar du dina “findings” till 6C. 
-        Använd gärna något ytterligare mättal som du finner relevant och intressant.
+        Kod-täckningen av koden är relativt låg på 26 procent. <br>
+        Den låga kod-täckningen beror på att varken entity's, repository's, controller's eller Dice spelet är unit-testat.<br>
+        För att uppnå högre kod-täckning behöver dessa klasser unit-tester.<br>
     </p>
 
     <hr>
     <h2>Förbättringar</h2>
 
     <p>
-    där du väljer minst 3 förbättringar som du vill göra med din kod (gärna fler).
+        Innan förbättringarna ligger kvalitets score på 9.97 och kod-täckningen på 26 procent. <br>
 
-    Exempel på förbättringar kan vara:
-        Fixa issues
-        Öka kodtäckning
-        Fokusera på kvalitetsindex i Scrutinizer
-        Minska komplexiteten i class/metod
+        <br>
 
-    Börja med att skriva om förbättringarna, vad du tänker göra, varför du väljer dem och hur du tror det kommer påverka mätvärdena för kvalitet.
+        För att förbättra min kod har jag valt att öka kod-täckningen, <br>
+        jag tänker öka kod-täckning på mina klasser för Dice spelet. <br>
+
+        <br>
+
+        En annan förbättring är att fixa calculateScore metoden i CardHand klassen för att uppna ett kvalitets score på 10. <br>
+        För att göra detta kommer jag fokusera på att minska komplexiteten i just den metoden. <br>
+
+        <br>
+
+        Jag kommer även fixa till en bug med en kommentar i min Game klass där parameterns array med typ mixed inte fungerar.
+
+    {# Börja med att skriva om förbättringarna, vad du tänker göra, varför du väljer dem och hur du tror det kommer påverka mätvärdena för kvalitet.
     Implementera sedan förbättringarna.
     Analysera därefter rapporterna från phpmetrics och Scrutinizer och notera de nya mätvärdena.
-    Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar.
+    Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar. #} #}
 
     </p>
 

@@ -17,7 +17,7 @@ Clone the repo
 git clone https://github.com/mapg23/mvc.git
 ```
 
-Controlls that all necessary php extensions is installed.
+Controls that all necessary php extensions is installed.
 ```
 composer require webapp
 ```

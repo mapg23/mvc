@@ -358,7 +358,14 @@
   text-align: left;
   text-decoration: none;
 }
-
+.metrics .metric-img {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  max-width: 100%;
+}
+.metrics .badge-container {
+  width: fit-content;
+}
 body, html {
   background-color: #202020;
 }

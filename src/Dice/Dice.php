@@ -27,4 +27,9 @@ class Dice
         return "[{$this->value}]";
     }
 
+    public function setValue(int $numb): void
+    {
+        $this->value = $numb;
+    }
+
 }
