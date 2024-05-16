@@ -23,7 +23,7 @@ class Game
 
     /**
      * Method that executes on start.
-     * @param array <mixed> $data
+     * @param array<mixed> $data
      */
     public function __construct(array $data)
     {
