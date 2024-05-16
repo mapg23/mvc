@@ -506,6 +506,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Dice-Dice.html#method_getAsString"
         },                {
+            "fqsen": "\\App\\Dice\\Dice\u003A\u003AsetValue\u0028\u0029",
+            "name": "setValue",
+            "summary": "",
+            "url": "classes/App-Dice-Dice.html#method_setValue"
+        },                {
             "fqsen": "\\App\\Dice\\Dice\u003A\u003A\u0024value",
             "name": "value",
             "summary": "",
@@ -560,6 +565,11 @@ Search.appendIndex(
             "name": "getString",
             "summary": "",
             "url": "classes/App-Dice-DiceHand.html#method_getString"
+        },                {
+            "fqsen": "\\App\\Dice\\DiceHand\u003A\u003AgetHand\u0028\u0029",
+            "name": "getHand",
+            "summary": "",
+            "url": "classes/App-Dice-DiceHand.html#method_getHand"
         },                {
             "fqsen": "\\App\\Dice\\DiceHand\u003A\u003A\u0024hand",
             "name": "hand",

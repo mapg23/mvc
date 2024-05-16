@@ -24,13 +24,13 @@ class DiceTest extends TestCase
 
     /**
      * Method that tests if roll, rolls correctly.
-     * 
+     *
      * @return void
      */
     public function testRoll(): void
     {
         $die = new Dice();
-        
+
         $die->roll();
 
         $this->assertGreaterThanOrEqual(1, $die->getValue());

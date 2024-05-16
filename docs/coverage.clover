@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1715701535">
-  <project timestamp="1715701535">
+<coverage generated="1715702386">
+  <project timestamp="1715702386">
     <file name="/home/marcus/dev/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
@@ -26,7 +26,7 @@
     </file>
     <file name="/home/marcus/dev/dbwebb-kurser/mvc/me/report/src/Card/CardHand.php">
       <class name="App\Card\CardHand" namespace="global">
-        <metrics complexity="18" methods="9" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="30" coveredstatements="29" elements="39" coveredelements="37"/>
+        <metrics complexity="18" methods="9" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="26" elements="38" coveredelements="33"/>
       </class>
       <line num="15" type="method" name="__construct" visibility="public" complexity="2" crap="2" count="18"/>
       <line num="17" type="stmt" count="18"/>
@@ -41,25 +41,24 @@
       <line num="42" type="stmt" count="1"/>
       <line num="45" type="method" name="getScore" visibility="public" complexity="1" crap="1" count="5"/>
       <line num="47" type="stmt" count="5"/>
-      <line num="50" type="method" name="calculateScore" visibility="public" complexity="7" crap="7" count="6"/>
+      <line num="50" type="method" name="calculateScore" visibility="public" complexity="7" crap="7.07" count="6"/>
       <line num="52" type="stmt" count="6"/>
       <line num="53" type="stmt" count="6"/>
-      <line num="54" type="stmt" count="6"/>
       <line num="56" type="stmt" count="6"/>
       <line num="57" type="stmt" count="5"/>
       <line num="59" type="stmt" count="5"/>
-      <line num="60" type="stmt" count="2"/>
-      <line num="61" type="stmt" count="2"/>
+      <line num="60" type="stmt" count="1"/>
+      <line num="61" type="stmt" count="1"/>
       <line num="64" type="stmt" count="5"/>
-      <line num="65" type="stmt" count="3"/>
-      <line num="66" type="stmt" count="3"/>
-      <line num="69" type="stmt" count="5"/>
+      <line num="65" type="stmt" count="4"/>
+      <line num="66" type="stmt" count="4"/>
+      <line num="69" type="stmt" count="4"/>
       <line num="72" type="stmt" count="6"/>
-      <line num="73" type="stmt" count="2"/>
+      <line num="73" type="stmt" count="1"/>
       <line num="74" type="stmt" count="1"/>
       <line num="75" type="stmt" count="1"/>
-      <line num="79" type="stmt" count="1"/>
-      <line num="80" type="stmt" count="1"/>
+      <line num="79" type="stmt" count="0"/>
+      <line num="80" type="stmt" count="0"/>
       <line num="83" type="stmt" count="6"/>
       <line num="87" type="method" name="setStand" visibility="public" complexity="2" crap="2.15" count="11"/>
       <line num="89" type="stmt" count="11"/>
@@ -67,7 +66,7 @@
       <line num="93" type="stmt" count="11"/>
       <line num="96" type="method" name="getStop" visibility="public" complexity="1" crap="1" count="4"/>
       <line num="98" type="stmt" count="4"/>
-      <metrics loc="102" ncloc="95" classes="1" methods="9" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="30" coveredstatements="29" elements="39" coveredelements="37"/>
+      <metrics loc="102" ncloc="94" classes="1" methods="9" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="26" elements="38" coveredelements="33"/>
     </file>
     <file name="/home/marcus/dev/dbwebb-kurser/mvc/me/report/src/Card/DeckOfCards.php">
       <class name="App\Card\DeckOfCards" namespace="global">
@@ -606,9 +605,9 @@
       <line num="43" type="stmt" count="1"/>
       <line num="44" type="stmt" count="1"/>
       <line num="46" type="stmt" count="1"/>
-      <line num="49" type="method" name="getHand" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="51" type="stmt" count="1"/>
-      <metrics loc="55" ncloc="52" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="19" coveredelements="19"/>
+      <line num="52" type="method" name="getHand" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="54" type="stmt" count="1"/>
+      <metrics loc="58" ncloc="52" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="19" coveredelements="19"/>
     </file>
     <file name="/home/marcus/dev/dbwebb-kurser/mvc/me/report/src/Entity/Book.php">
       <class name="App\Entity\Book" namespace="global">
@@ -816,6 +815,6 @@
       <line num="52" type="stmt" count="0"/>
       <metrics loc="80" ncloc="44" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="16" coveredelements="0"/>
     </file>
-    <metrics files="22" loc="1894" ncloc="1738" classes="21" methods="123" coveredmethods="46" conditionals="0" coveredconditionals="0" statements="560" coveredstatements="159" elements="683" coveredelements="205"/>
+    <metrics files="22" loc="1897" ncloc="1737" classes="21" methods="123" coveredmethods="45" conditionals="0" coveredconditionals="0" statements="559" coveredstatements="156" elements="682" coveredelements="201"/>
   </project>
 </coverage>

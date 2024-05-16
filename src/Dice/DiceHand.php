@@ -46,6 +46,9 @@ class DiceHand
         return $values;
     }
 
+    /**
+     * @return array<Dice>
+     */
     public function getHand(): array
     {
         return $this->hand;

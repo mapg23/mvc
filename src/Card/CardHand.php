@@ -51,35 +51,26 @@ class CardHand
     {
         $score = 0;
         $aceCount = 0;
-        $count = sizeof($this->hand);
 
-        for ($i = 0; $i < $count; $i++) {
-            $value = $this->hand[$i]->getValue();
+        foreach($this->hand as $card) {
+            $value = $card->getValue();
 
             if ($value === 1) {
                 $aceCount++;
                 continue;
             }
 
-            if($value > 10) {
-                $score += 10;
-                continue;
-            }
-
-            $score += $value;
+            $score += min($value, 10);
         }
 
         for ($i = 0; $i < $aceCount; $i++) {
-            if($score + 11 > 21) {
-                $score += 1;
-                continue;
-            }
-
-            /** @phpstan-ignore-next-line */
-            if($score + 11 < 22) {
+            if ($score + 11 <= 21) {
                 $score += 11;
+            } else {
+                $score += 1;
             }
         }
+    
         return $score;
     }
 
