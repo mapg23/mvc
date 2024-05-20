@@ -1,0 +1,89 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Texas hold'em Poker{% endblock %}
+
+{% block body %}
+
+
+<div class="two-split-layout">
+
+<aside class="aside project-aside">
+    {% include "proj/nav.html.twig" %}
+</aside>
+
+<main class="main project-main board">
+
+<div class="house-area">
+    <h2>House cards</h2>
+    <p>Pot: {{ pot}}$</p>
+    <div class="card-holder">
+
+        {% for card in dealer%}
+
+        <img class="poker-cards" src="/img/{{ card.getImage() }}" alt="Poker cards">
+
+        {% endfor %}
+    </div>
+
+</div>
+
+<div class="player-area">
+
+    <div class="slot">
+        <h2>Player 1</h2>
+        <h3>Bet: 0</h3>
+        <div class="cards">
+            {% for player in player1%}
+                {% for card in player%}
+                <img class="poker-cards" src="/img/{{ card.getImage() }}" alt="Poker cards">
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="slot">
+        <h2>You (Player 2)</h2>
+        <h3>{{res}}</h3>
+        <h3>Bet: 0</h3>
+
+        <div class="cards">
+            {% for player in player2%}
+                {% for card in player%}
+                <img class="poker-cards" src="/img/{{ card.getImage() }}" alt="Poker cards">
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="slot">
+        <h2>Player 3</h2>
+        <h3>Bet: 0</h3>
+        <div class="cards">
+            {% for player in player3%}
+                {% for card in player%}
+                <img class="poker-cards" src="/img/{{ card.getImage() }}" alt="Poker cards">
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+<div class="interface-area">
+
+<ul>
+    <li><a href="{{ path('project_game_next')}}">Check</a></li>
+    <li><a href="{{ path('start') }}">Fold</a></li>
+    <li><a href="#">Raise</a></li>
+    <li><p>Currency: 1000$</p></li> 
+</ul>
+
+</div>
+
+</main>
+
+</div>
+
+
+
+{% endblock %}

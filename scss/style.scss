@@ -16,18 +16,8 @@
 @import "blackJack";
 @import "library";
 @import "metrics";
+@import "project";
 
 body, html {
     background-color: $background-color;
-}
-
-.main, .aside {
-    margin: 0 auto;
-    padding: 2rem;
-    min-height: 525px;
-
-    text-align: center;
-
-    background-color: #333;
-    color: white;
 }
