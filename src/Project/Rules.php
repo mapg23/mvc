@@ -5,222 +5,299 @@ namespace App\Project;
 class Rules
 {
     private array $hand;
-    private array $dealer;
-    private array $merged;
+    private array $originalHand;
+    private int $round;
 
-    public function __construct(array $hand, array $dealer)
+    private string $result;
+    private int $score = 0;
+    private array $ranks = [
+        "highCards" => 1,
+        "pairs" => 2,
+        "twoPairs" => 3,
+        "threeOfAKind" => 4,
+        "straight" => 5,
+        "flush" => 6,
+        "fullHouse" => 7,
+        "fourOfAKind" => 8,
+        "straightFlush" => 9
+    ];
+
+    public function __construct(array $hand, array $dealer, int $round)
     {
+        $this->originalHand = $hand;
         $this->hand = $hand;
-        $this->dealer = $dealer;
 
-        $this->merged = array_merge($this->hand, $this->dealer);
-        rsort($this->merged);
+        $this->round = $round;
 
+        if ($this->round >= 1) {
+            for ($i = 0; $i < $this->round; $i++) {
+                $this->hand[] = $dealer[$i];
+            }
+        }
+    }
+    public function getHand() {
+        return $this->hand;
     }
 
-    public function cardCounts()
+    public function getRank()
     {
-        $counts = [];
+        return $this->calculateRank();
+    }
 
-        foreach($this->merged as $card) {
+    public function getRankScore()
+    {
+        return $this->ranks[$this->calculateRank()];
+    }
 
-            if (isset($counts[$card->getNumber()])) {
-                $counts[$card->getNumber()]++;
-                continue;
+    public function calculateRank()
+    {
+        foreach(array_reverse($this->ranks) as $key => $value)
+        {
+            $func = $key;
+            if($this->$func() == $key) {
+                return $this->$func();
+            }
+        }
+    }
+    
+    public function checkIfIsLadderDESC(array $array)
+    {
+        arsort($array);
+        $reindexedArray = array_values($array);
+
+        $count = 0;
+        for ($i = 1; $i < count($reindexedArray); $i++) {
+            $count++;
+
+            if ($count >= 5) {
+                return true;
             }
 
-            $counts[$card->getNumber()] = 1;
+            if (intval($reindexedArray[$i]) != intval($reindexedArray[$i - 1] - 1) ) {
+                return false;
+            }
         }
-
-        return $counts;
+        return true;
     }
 
-    public function valuateCards()
+    public function checkIfIsLadder(array $array)
     {
-        if ($this->straightFlush()) {
-            return $this->straightFlush();
+        asort($array);
+        $reindexedArray = array_values($array);
+
+        $count = 0;
+        for ($i = 1; $i < count($reindexedArray); $i++) {
+            $count++;
+
+            if ($count >= 5) {
+                return true;
+            }
+
+            if (intval($reindexedArray[$i]) != intval($reindexedArray[$i - 1] + 1) ) {
+                return false;
+            }
         }
-
-        if ($this->fourOfAKind()) {
-            return $this->fourOfAKind();
-        }
-
-        if ($this->fullHouse()) {
-            return $this->fullHouse();
-        }
-
-        if ($this->flush()) {
-            return $this->flush();
-        }
-
-        if ($this->straight()) {
-            return $this->straight();
-        }
-
-        if ($this->threeOfAKind()) {
-            return $this->threeOfAKind();
-        }
-
-        if ($this->twoPairs()) {
-            return $this->twoPairs();
-        }
-
-        if ($this->pairs()) {
-            return $this->pairs();
-        }
-
-        return $this->highCards();
-    }
-
-    public function getMerged()
-    {
-        return $this->merged;
+        return true;
     }
 
     public function straightFlush()
     {
-        if ($this->straight() AND $this->flush()) {
-            return "Straight Flush";
+        $colorCount = [];
+        foreach($this->hand as $card) {
+            if (isset($colorCount[$card->getType()])) {
+                $colorCount[$card->gettype()]++;
+                continue;
+            }
+            $colorCount[$card->gettype()] = 1;
         }
+
+        $key = array_search(max($colorCount), $colorCount);
+        $filteredArray = [];
+
+        foreach($this->hand as $card) {
+            if ($card->getType() === $key) {
+                $filteredArray[] = $card->getNumber();
+            }
+        }
+
+        $unique_array = array_unique($filteredArray);
+        asort($unique_array);
+
+        if ($this->checkIfIsLadder($unique_array) && count($unique_array) == 5) {
+            return "straightFlush";
+        }
+        return "nothing";
     }
 
     public function fourOfAKind()
     {
-        $counts = $this->cardCounts();
-        $pairs = [];
+        $numbArray = [];
 
-        foreach($counts as $card => $count) {
-            if ($count == 4) {
-                $pairs[] = $card;
-            }
+        foreach($this->hand as $card) {
+            $numbArray[] = $card->getNumber();
         }
 
-        if (!empty($pairs)) {
-            return "Four of a kind: " . $pairs[0];
+        $vals = array_count_values($numbArray);
+
+        if (max(array_values($vals)) != "4") {
+            return "nothing";
         }
+
+        arsort($vals);
+        $key = array_key_first($vals);
+
+        if (intval($vals[$key]) == 4) {
+            $this->score = intval($vals[$key]) * 4;
+            return "fourOfAKind";
+        }
+
+        return "nothing";
     }
 
     public function fullHouse()
     {
-        if ($this->threeOfAKind() AND $this->pairs()) {
-            return "Full house";
+        $numbArray = [];
+        $count = [];
+
+        foreach($this->hand as $card) {
+            $numbArray[] = $card->getNumber();
         }
+
+        $vals = array_count_values($numbArray);
+        arsort($vals);
+
+        $first = key($vals);
+        next($vals);
+        $second = key($vals);
+
+        if ($vals[$first] != "3" && $vals[$second] != "2") {
+        }
+        
+        if (intval($vals[$first]) == 3 && intval($vals[$second]) == 2) {
+            $this->score = (intval($first) * intval($vals[$first]) + intval($second) * intval($vals[$second]));
+            return "fullHouse";
+        }
+        
+        return "nothing";
     }
 
     public function flush()
     {
-        $colors = [];
-        foreach ($this->merged as $card) {
-            if (isset($colors[$card->getType()])) {
-                $colors[$card->gettype()]++;
-                continue;
-            }
+        $colorCount = [];
 
-            $colors[$card->getType()] = 1;
+        foreach($this->hand as $card) {
+            $colorCount[] = $card->getType();
         }
 
-        foreach($colors as $color) {
-            if ($color >= 5) {
-                return "Flush";
-            }
+        if (count($colorCount) == 1) {
+            return "flush";
         }
+        return "nothing";
     }
 
     public function straight()
     {
-        $sortedCards = [];
-        
-        foreach ($this->merged as $card) {
-            $sortedCards[] = $card->getNumber(); 
-        }
-        
-        $unique = array_unique($sortedCards);
-        sort($unique);
+        $numberArray = [];
 
-        $straight = true;
-        $count = 0;
-        for($i = 0; $i < count($unique) - 1; $i++) {
-            $count++;
-
-            if ($count >= 5) {
-                break;
-            }
-
-            if ($unique[$i] + 1 !== $unique[$i + 1]) {
-                $straight = false;
-            }
+        foreach($this->hand as $card) {
+            $numberArray[] = $card->getNumber();
         }
 
-        if ($straight) {
-            return "Straight";
+        $unique_array = array_unique($numberArray);
+        arsort($unique_array);
+
+        if ($this->checkIfIsLadder($unique_array)) {
+            $this->score = array_sum($unique_array);
+            return "straight";
         }
+
+        if ($this->checkIfIsLadderDESC($unique_array)) {
+            $this->score = array_sum($unique_array);
+            return "straight";
+        }
+        return "nothing";
     }
 
     public function threeOfAKind()
     {
-        $counts = $this->cardCounts();
-        $pairs = [];
+        $numbArray = [];
 
-        foreach($counts as $card => $count) {
-            if ($count == 3) {
-                $pairs[] = $card;
-            }
+        foreach($this->hand as $card) {
+            $numbArray[] = $card->getNumber();
         }
 
-        if (!empty($pairs)) {
-            return "Three of a kind: " . $pairs[0];
+        $vals = array_count_values($numbArray);
+
+        if (max(array_values($vals)) != "3") {
+            return "nothing";
         }
+
+        arsort($vals);
+        $key = array_key_first($vals);
+
+        if (intval($vals[$key]) == 3) {
+            $this->score = intval($vals[$key]) * 3;
+            return "threeOfAKind";
+        }
+
+        return "nothing";
     }
 
     public function twoPairs()
     {
-        $counts = $this->cardCounts();
-        $pairs = [];
+        $numbArray = [];
+        $count = [];
 
-        foreach($counts as $card => $count) {
-            if ($count == 2) {
-                $pairs[] = $card;
-            }
+        foreach($this->hand as $card) {
+            $numbArray[] = $card->getNumber();
         }
 
-        if (count($pairs) >= 2) {
-            return "Two pair of: " . $pairs[0] . " And " . $pairs[1];
+        $vals = array_count_values($numbArray);
+        arsort($vals);
+
+        $first = key($vals);
+        next($vals);
+        $second = key($vals);
+
+        if (intval($vals[$first]) == 2 && intval($vals[$second]) == 2) {
+            $this->score = (intval($vals[$first]) * 2) + (intval($vals[$second]) * 2);
+            return "twoPairs";
         }
+
+        return "nothing";
     }
 
     public function pairs()
     {
-        $counts = $this->cardCounts();
-        $pairs = [];
-        foreach ($this->merged as $card) {
+        $numbArray = [];
+        $count = [];
+        for ($i = 0; $i < count($this->hand); $i++)
+        {
+            $numbArray[] = $this->hand[$i]->getNumber();
+        }
 
-            if (isset($counts[$card->getNumber()])) {
-                $counts[$card->getNumber()]++;
-                continue;
+        $vals = array_count_values($numbArray);
+
+        $max = max(array_values($vals));
+        $key = array_search($max, $vals);
+
+        foreach($vals as $val) {
+            if ($val >= 2) {
+                $count[] = $val;
             }
-            
-            $counts[$card->getNumber()] = 1;
         }
 
-        foreach($counts as $card => $count) {
-            if ($count == 2) {
-                $pairs[] = $card;
-            }
+        if (!empty($count)) {
+            $this->score =  intval($key) * 2;
+            return "pairs";
         }
-
-        if (isset($pairs[0])) {
-            return "Pairs of " . $pairs[0];
-        }
+        return "nothing";
     }
 
     public function highCards()
     {
-        $sum = 0;
-
-        foreach ($this->hand as $card) {
-            $sum += $card->getNumber();
-        }
-
-        return "HighCard: " . $sum;
+        $this->score = $this->originalHand[0]->getNumber() + $this->originalHand[1]->getNumber();
+        return "highCards";
     }
+
 }

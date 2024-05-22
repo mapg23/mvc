@@ -4,7 +4,6 @@ namespace App\Project;
 
 use App\Project\Card;
 use App\Project\Hand;
-use App\Project\Rules;
 
 class Game
 {
@@ -19,41 +18,38 @@ class Game
     private Hand $computer1;
     private Hand $computer2;
 
-    private string|null $res;
+    private string|null|array $res;
 
     public function __construct(
         array $data,
     ) {
-        $testDeck = [
-            new Card(3, "hearts"),
-            new Card(3, "diamonds"),
-            new Card(3, "clubs"),
-            new Card(5, "diamonds"),
-            new Card(5, "hearts")
-        ];
         $this->deck = $data['deck'] ?? $this->generateDeck();
-        $this->dealerDeck = $data['dealer'] ?? $testDeck;
-        // $this->dealerDeck = $testDeck;
+        $this->dealerDeck = $data['dealer'] ?? $this->deal(5);
         $this->pot = $data['pot'] ?? 0;
         $this->round = $data['round'] ?? 0;
+
+        if ($this->round >= 6) {
+            $this->round = 5;
+        }
 
         $data['player1']['hand'] = $data['player1']['hand'] ?? $this->deal(2);
         $data['player2']['hand'] = $data['player2']['hand'] ?? $this->deal(2);
         $data['player3']['hand'] = $data['player3']['hand'] ?? $this->deal(2);
 
-        $this->computer1 = new Hand($data['player1']);
-        $this->player = new Hand($data['player2']);
-        $this->computer2 = new Hand($data['player3']);
+        $this->computer1 = new Hand($data['player1'], $this->getDealerDeck(), $this->round);
+        $this->player = new Hand($data['player2'], $this->getDealerDeck(), $this->round);
+        $this->computer2 = new Hand($data['player3'], $this->getDealerDeck(), $this->round);
+        
+        $this->res = "";
 
-        $rules = new Rules($this->player->getHand(), $this->getDealerDeck());
-
-        $this->res = $rules->valuateCards();
+        if($this->round == 5) {
+            $this->res = $this->player->getRank();
+        }
 
         if ($this->round >= 1 AND $this->round <= 5)
         {
             $this->dealerDeck[$this->round - 1]->setVisibility(true);
         }
-
 
         $this->player->makeAllVisible();
     }
