@@ -6,6 +6,10 @@
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/mapg23/mvc/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
 ![alt text](/public/img/github-picture.jpg)
 
+## Content
+This repository contains a website made with symfony.
+The website contains some card games, library, metrics of the website and an api endpoint for the above.
+
 ## Requirements
     PHP >= 8.2
     Composer

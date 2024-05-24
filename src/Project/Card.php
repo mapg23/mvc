@@ -2,36 +2,21 @@
 
 namespace App\Project;
 
-class Card 
+
+class Card
 {
-    private bool $visibleCard = false;
+    private string $type;
+    private int $number;
 
-    private string $defaultCard = "cards/default.jpeg";
-    private string $cardPath;
-
-    private int|null $number;
-    private string|null $type;
-
-    public function __construct(int $number = null, string $type = null)
+    public function __construct(string $type, int $number)
     {
-        $this->number = $number;
         $this->type = $type;
+        $this->number = $number;
     }
 
     public function getImage()
     {
-        if (!$this->visibleCard) {
-            return $this->defaultCard;
-        }
-
-        $this->cardPath = "cards/" . $this->number . "_of_" . $this->type . ".png";
-
-        return $this->cardPath;
-    }
-
-    public function setVisibility(bool $argument)
-    {
-        $this->visibleCard = $argument;
+        return $this->number . "_of_" . $this->type . ".png";
     }
 
     public function getType()
@@ -39,18 +24,9 @@ class Card
         return $this->type;
     }
 
-    public function setType(string $type)
-    {
-        $this->type = $type;
-    }
-
     public function getNumber()
     {
         return $this->number;
     }
 
-    public function setNumber(int $number)
-    {
-        $this->number = $number;
-    }
 }

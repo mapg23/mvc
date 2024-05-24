@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Project Rules{% endblock %}
+
+{% block body %}
+
+
+    <div class="two-split-layout">
+        {% include "proj/nav.html.twig" %}
+
+        <main class="main project-main rules">
+            <h1>Rules</h1>
+
+            <p>
+                BlackJack går ut på att användaren ska få kort som tillsammans blir 21. <br>
+                Om spelaren inte har kort som blir 21 ska spelaren få kort som tillsammans är så nära 21 som möjligt <br>
+                Spelet spelas emot en dator som har samma regler. <br>
+                Om antingen spelaren eller datorn får ett värde på mer än 21 blir dem busted, vilket gör att den andra vinner. <br>
+                Om spelaren och datorn får samma värde blir spelet oavgjort. <br>
+            </p>
+
+            <h1>Kortens värde</h1>
+            <p>
+                Alla klädda kort har ett värde på 10. <br>
+                Det klädda korten inkluderar Knäckt, Drottning och Kung. <br>
+            </p>
+                <div class="rules-card-holder">
+                    <img class="rules-cards" src="/img/cards/11_of_clubs.png" alt="card">
+                    <img class="rules-cards" src="/img/cards/12_of_diamonds.png" alt="card">
+                    <img class="rules-cards" src="/img/cards/13_of_hearts.png" alt="card">
+                </div>
+            <p>
+                Ett S har ett värde som kan variera beroende på vilka kort som redan finns i handen. <br>
+                Ett S kan har värderna 1 och 11. <br>
+                Om det sammanlagda värdet av handen plus 11 är mer än 21 blir S:ets värde 1. <br>
+                Om det sammanlagda vädret av handen plus 11 är mindre än 21 blir S:ets värde 11. <br>
+                Alla S som finns i handen räknas efter de andra korten vilket göra att flera S i samma hand kan ha olika värden. <br>
+            </p>
+
+                <div class="rules-card-holder">
+                    <img class="rules-cards" src="/img/cards/14_of_clubs.png" alt="card">
+                    <img class="rules-cards" src="/img/cards/14_of_spades.png" alt="card">
+                    <img class="rules-cards" src="/img/cards/14_of_diamonds.png" alt="card">
+                    <img class="rules-cards" src="/img/cards/14_of_hearts.png" alt="card">
+                </div>
+        </main>
+
+    </div>
+
+
+
+{% endblock %}

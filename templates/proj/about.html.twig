@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Project{% endblock %}
+
+{% block body %}
+
+
+    <div class="two-split-layout">
+        {% include "proj/nav.html.twig" %}
+
+        <main class="main project-main">
+            <h1>About</h1>
+
+            <p>
+                Projektet jag har gjort är BlackJack. <br>
+                Under spelets gång kan användaren välja hur många händer att spela samtidigt, med ett maximalt antal händer på 3. <br>
+                Reglerna till spelet finns under sidan rules som finns i navigations baren. <br>
+
+                {# En sida /proj/about som ger en kort introduktion till ditt projekt och vad det handlar om. #}
+            </p>
+
+        </main>
+
+    </div>
+
+
+
+{% endblock %}

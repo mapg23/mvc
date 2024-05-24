@@ -1,105 +1,105 @@
 <?php
 
 namespace App\Project;
-use App\Project\Rules;
-
 
 class Hand
 {
-    private array $hand;
-    private array $dealer;
-    private int $round;
+    private bool $taken = false;
+    private array $cards;
+    private int $index;
+    private bool $stand;
+    private string $result;
 
-    private string $rank;
-    private Rules $rules;
+    public function __construct(
+        int $index,
+        bool $taken,
+        array $cards,
+        bool $stand,
+        string $result,
 
-    private int $money;
-    private int $bet;
-    
-    private bool $fold;
-    private bool $check;
-    private bool $raise;
-
-    public function __construct(array $data, array $dealer, int $round)
-    {
-        $this->hand = $data['hand'] ?? [];
-        $this->fold = $data['fold'] ?? false;
-        $this->money = $data['money'] ?? 1000;
-        $this->bet = $data['bet'] ?? 0;
-
-        $this->dealer = $dealer;
-        $this->round = $round;
-
-        $this->rules = new Rules($this->getHand(), $this->dealer, $this->round);
-
-        $this->rank = $this->rules->calculateRank();
+    ){
+        $this->index = $index;
+        $this->taken = $taken;
+        $this->cards = $cards;
+        $this->stand = $stand;
+        $this->result = $result;
     }
 
-    public function getHand()
+    public function add(array $card)
     {
-        return $this->hand;
-    }
-
-    public function getRank()
-    {
-        return $this->rank;
+        $this->cards[] = $card[0];
     }
 
     public function getScore()
     {
+        $aceCount = 0;
+        $count = 0;
 
-    }
-
-    public function setHand(array $hand)
-    {
-        $this->hand = $hand;
-    }
-
-    public function makeAllVisible()
-    {
-        foreach ($this->hand as $card)
-        {
-            $card->setVisibility(true);
+        foreach($this->cards as $card) {
+            if ($card->getNumber() === 14) {
+                $aceCount++;
+                continue;
+            }
+            $count += min($card->getNumber(), 10);
         }
+
+        for ($i = 0; $i < $aceCount; $i++) {
+            if ($count + 11 <= 21) {
+                $count += 11;
+                continue;
+            }
+            $count += 1;
+        }
+        return $count;
     }
 
-    public function setFold(bool $fold)
+    public function getIndex()
     {
-        $this->fold = $fold;
+        return $this->index;
     }
 
-    public function getFold()
+    public function getCards()
     {
-        return $this->fold;
+        return $this->cards;
     }
 
-    public function getMoney()
+    public function getTaken()
     {
-        return $this->money;
+        return $this->taken;
     }
 
-    public function setMoney(int $money)
+    public function setTaken(bool $param)
     {
-        $this->money = $money;
+        $this->taken = $param;
     }
 
-    public function setBet(int $bet)
+    public function setStand(bool $param)
     {
-        $this->bet = $bet;
+        $this->stand = $param;
     }
 
-    public function getBet()
+    public function getStand()
     {
-        return $this->bet;
+        return $this->stand;
     }
 
-    public function saveHand(): array
+    public function setResult(string $param)
+    {
+        $this->result = $param;
+    }
+
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    public function saveData()
     {
         return [
-            'hand' => $this->getHand(),
-            'fold' => $this->getFold(),
-            'money' => $this->getMoney(),
-            'bet' => $this->getBet()
+            'cards' => $this->getCards(),
+            'taken' => $this->getTaken(),
+            'stand' => $this->getStand(),
+            'result' => $this->getResult()
         ];
     }
 }

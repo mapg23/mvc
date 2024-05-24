@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Project API{% endblock %}
+
+{% block body %}
+
+
+    <div class="two-split-layout">
+        {% include "proj/nav.html.twig" %}
+
+        <main class="main project-main">
+            <h1>Api</h1>
+
+
+        <div class="api-wrapper">
+
+            <div class="api-route">
+                <h1>POST proj/api/draw</h1>
+                <p>
+                    Denna api drar ett kort från BlackJack decket.
+                </p>
+                <a href="{{ path('proj_api_draw') }}">Go to</a>
+            </div>
+        </div>
+
+        </main>
+
+    </div>
+
+
+
+{% endblock %}

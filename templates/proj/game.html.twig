@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Texas hold'em Poker{% endblock %}
+
+{% block body %}
+
+<div class="two-split-layout">
+
+{% include "proj/nav.html.twig" %}
+
+
+<main class="main project-main board">
+
+<div class="house-area">
+    <div class="slot">
+        <h2>{{dealer.getResult()}}</h2>
+        <h3>{{dealer.getScore()}}</h3>
+        <div class="cards">
+            {% for card in dealer.getCards() %}
+                    <img class="poker-cards" src="/img/cards/{{card.getImage()}}" alt="card">
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% if not end %}
+    <a href="{{ path('project_next_round')}}">next round</a>
+{% else %}
+    <a href="{{ path('project_new_game')}}">new game</a>
+{% endif %}
+
+<div class="player-area">
+
+{% for hand in seats %}
+
+    {% if hand.getTaken() %}
+
+        <div class="slot">
+            <h2>{{hand.getResult()}}</h2>
+
+            <h3>Score: {{hand.getScore()}}</h3>
+            <div class="cards">
+                {% for card in hand.getCards() %}
+                    <img class="poker-cards" src="/img/cards/{{card.getImage()}}" alt="card">
+                {% endfor %}
+            </div>
+
+        {% if not hand.getStand() %}
+            <div class="actions">
+                <a href="{{ path('project_hit', {'number': hand.getIndex()})}}">Hit</a>
+                <a href="{{ path('project_stand', {'number': hand.getIndex()})}}">Stand</a>
+            </div>
+        {% endif %}
+        </div>
+    {% else %}
+
+        {% if not inProgress %}
+        <div class="slot">
+            <h2>Seat</h2>
+            <a href="{{ path('project_join_seat', {'number': hand.getIndex() })}}" class="join-card">
+                + Press to join
+            </a>
+        </div>
+        {% endif %}
+
+    {% endif %}
+
+{% endfor %}
+
+</div>
+
+
+</main>
+
+</div>
+
+
+
+{% endblock %}

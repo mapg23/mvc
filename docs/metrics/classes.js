@@ -1,5 +1,363 @@
 var classes = [
     {
+        "name": "App\\Project\\Card",
+        "interface": false,
+        "abstract": false,
+        "final": false,
+        "methods": [
+            {
+                "name": "__construct",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getImage",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getType",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getNumber",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            }
+        ],
+        "nbMethodsIncludingGettersSetters": 4,
+        "nbMethods": 2,
+        "nbMethodsPrivate": 0,
+        "nbMethodsPublic": 2,
+        "nbMethodsGetter": 2,
+        "nbMethodsSetters": 0,
+        "wmc": 2,
+        "ccn": 1,
+        "ccnMethodMax": 1,
+        "externals": [],
+        "parents": [],
+        "implements": [],
+        "lcom": 1,
+        "length": 20,
+        "vocabulary": 8,
+        "volume": 60,
+        "difficulty": 3.6,
+        "effort": 216,
+        "level": 0.28,
+        "bugs": 0.02,
+        "time": 12,
+        "intelligentContent": 16.67,
+        "number_operators": 8,
+        "number_operands": 12,
+        "number_operators_unique": 3,
+        "number_operands_unique": 5,
+        "cloc": 0,
+        "loc": 23,
+        "lloc": 23,
+        "mi": 57.71,
+        "mIwoC": 57.71,
+        "commentWeight": 0,
+        "kanDefect": 0.15,
+        "relativeStructuralComplexity": 0,
+        "relativeDataComplexity": 3.5,
+        "relativeSystemComplexity": 3.5,
+        "totalStructuralComplexity": 0,
+        "totalDataComplexity": 14,
+        "totalSystemComplexity": 14,
+        "package": "App\\Project\\",
+        "pageRank": 0.03,
+        "afferentCoupling": 1,
+        "efferentCoupling": 0,
+        "instability": 0,
+        "numberOfUnitTests": 0,
+        "violations": {}
+    },
+    {
+        "name": "App\\Project\\Hand",
+        "interface": false,
+        "abstract": false,
+        "final": false,
+        "methods": [
+            {
+                "name": "__construct",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "add",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getScore",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getIndex",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getCards",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getTaken",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setTaken",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setStand",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getStand",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setResult",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getResult",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "saveData",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            }
+        ],
+        "nbMethodsIncludingGettersSetters": 12,
+        "nbMethods": 4,
+        "nbMethodsPrivate": 0,
+        "nbMethodsPublic": 4,
+        "nbMethodsGetter": 5,
+        "nbMethodsSetters": 3,
+        "wmc": 8,
+        "ccn": 5,
+        "ccnMethodMax": 5,
+        "externals": [],
+        "parents": [],
+        "implements": [],
+        "lcom": 2,
+        "length": 95,
+        "vocabulary": 26,
+        "volume": 446.54,
+        "difficulty": 17.47,
+        "effort": 7801.35,
+        "level": 0.06,
+        "bugs": 0.15,
+        "time": 433,
+        "intelligentContent": 25.56,
+        "number_operators": 29,
+        "number_operands": 66,
+        "number_operators_unique": 9,
+        "number_operands_unique": 17,
+        "cloc": 0,
+        "loc": 77,
+        "lloc": 77,
+        "mi": 39.62,
+        "mIwoC": 39.62,
+        "commentWeight": 0,
+        "kanDefect": 0.52,
+        "relativeStructuralComplexity": 25,
+        "relativeDataComplexity": 1.29,
+        "relativeSystemComplexity": 26.29,
+        "totalStructuralComplexity": 300,
+        "totalDataComplexity": 15.5,
+        "totalSystemComplexity": 315.5,
+        "package": "App\\Project\\",
+        "pageRank": 0.06,
+        "afferentCoupling": 1,
+        "efferentCoupling": 0,
+        "instability": 0,
+        "numberOfUnitTests": 0,
+        "violations": {}
+    },
+    {
+        "name": "App\\Project\\Game",
+        "interface": false,
+        "abstract": false,
+        "final": false,
+        "methods": [
+            {
+                "name": "__construct",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "init",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "playRound",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "endOfMatch",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setResults",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "allStand",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "checkBusted",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "takeSeat",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "hit",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "stand",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "generateDeck",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "deal",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "dataToTwig",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "dataToSave",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            }
+        ],
+        "nbMethodsIncludingGettersSetters": 14,
+        "nbMethods": 14,
+        "nbMethodsPrivate": 0,
+        "nbMethodsPublic": 14,
+        "nbMethodsGetter": 0,
+        "nbMethodsSetters": 0,
+        "wmc": 54,
+        "ccn": 41,
+        "ccnMethodMax": 19,
+        "externals": [
+            "App\\Project\\Hand",
+            "App\\Project\\Hand",
+            "App\\Project\\Hand",
+            "App\\Project\\Hand",
+            "App\\Project\\Card"
+        ],
+        "parents": [],
+        "implements": [],
+        "lcom": 1,
+        "length": 277,
+        "vocabulary": 48,
+        "volume": 1547.03,
+        "difficulty": 27.24,
+        "effort": 42136.34,
+        "level": 0.04,
+        "bugs": 0.52,
+        "time": 2341,
+        "intelligentContent": 56.8,
+        "number_operators": 70,
+        "number_operands": 207,
+        "number_operators_unique": 10,
+        "number_operands_unique": 38,
+        "cloc": 0,
+        "loc": 137,
+        "lloc": 137,
+        "mi": 25.54,
+        "mIwoC": 25.54,
+        "commentWeight": 0,
+        "kanDefect": 1.91,
+        "relativeStructuralComplexity": 225,
+        "relativeDataComplexity": 0.58,
+        "relativeSystemComplexity": 225.58,
+        "totalStructuralComplexity": 3150,
+        "totalDataComplexity": 8.19,
+        "totalSystemComplexity": 3158.19,
+        "package": "App\\Project\\",
+        "pageRank": 0.02,
+        "afferentCoupling": 1,
+        "efferentCoupling": 2,
+        "instability": 0.67,
+        "numberOfUnitTests": 0,
+        "violations": {}
+    },
+    {
         "name": "App\\Game\\Game",
         "interface": false,
         "abstract": false,
@@ -221,7 +579,7 @@ var classes = [
         "totalDataComplexity": 0.75,
         "totalSystemComplexity": 363.75,
         "package": "App\\Repository\\",
-        "pageRank": 0.03,
+        "pageRank": 0.02,
         "afferentCoupling": 1,
         "efferentCoupling": 2,
         "instability": 0.67,
@@ -491,7 +849,7 @@ var classes = [
         "totalDataComplexity": 16,
         "totalSystemComplexity": 16,
         "package": "App\\Dice\\",
-        "pageRank": 0.13,
+        "pageRank": 0.11,
         "afferentCoupling": 3,
         "efferentCoupling": 0,
         "instability": 0,
@@ -1597,6 +1955,163 @@ var classes = [
         "violations": {}
     },
     {
+        "name": "App\\Controller\\ProjectController",
+        "interface": false,
+        "abstract": false,
+        "final": false,
+        "methods": [
+            {
+                "name": "getSessionData",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "saveSessionData",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "index",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "about",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "rules",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "game",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "addSeat",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "hit",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "stand",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "nextRound",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "newGame",
+                "role": null,
+                "public": true,
+                "private": false,
+                "_type": "Hal\\Metric\\FunctionMetric"
+            }
+        ],
+        "nbMethodsIncludingGettersSetters": 11,
+        "nbMethods": 11,
+        "nbMethodsPrivate": 0,
+        "nbMethodsPublic": 11,
+        "nbMethodsGetter": 0,
+        "nbMethodsSetters": 0,
+        "wmc": 11,
+        "ccn": 1,
+        "ccnMethodMax": 1,
+        "externals": [
+            "Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "App\\Project\\Game",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "App\\Project\\Game",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "App\\Project\\Game",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "App\\Project\\Game",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "App\\Project\\Game",
+            "Symfony\\Component\\HttpFoundation\\Response",
+            "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface"
+        ],
+        "parents": [
+            "Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController"
+        ],
+        "implements": [],
+        "lcom": 1,
+        "length": 177,
+        "vocabulary": 36,
+        "volume": 915.08,
+        "difficulty": 4.44,
+        "effort": 4064.02,
+        "level": 0.23,
+        "bugs": 0.31,
+        "time": 226,
+        "intelligentContent": 206.04,
+        "number_operators": 26,
+        "number_operands": 151,
+        "number_operators_unique": 2,
+        "number_operands_unique": 34,
+        "cloc": 9,
+        "loc": 88,
+        "lloc": 79,
+        "mi": 61.51,
+        "mIwoC": 37.73,
+        "commentWeight": 23.77,
+        "kanDefect": 0.15,
+        "relativeStructuralComplexity": 169,
+        "relativeDataComplexity": 0.79,
+        "relativeSystemComplexity": 169.79,
+        "totalStructuralComplexity": 1859,
+        "totalDataComplexity": 8.71,
+        "totalSystemComplexity": 1867.71,
+        "package": "App\\Controller\\",
+        "pageRank": 0.02,
+        "afferentCoupling": 0,
+        "efferentCoupling": 4,
+        "instability": 1,
+        "numberOfUnitTests": 0,
+        "violations": {}
+    },
+    {
         "name": "App\\Kernel",
         "interface": false,
         "abstract": false,
@@ -1896,7 +2411,7 @@ var classes = [
         "totalDataComplexity": 2,
         "totalSystemComplexity": 4,
         "package": "App\\Card\\",
-        "pageRank": 0.12,
+        "pageRank": 0.1,
         "afferentCoupling": 2,
         "efferentCoupling": 1,
         "instability": 0.33,
@@ -1967,7 +2482,7 @@ var classes = [
         "totalDataComplexity": 8,
         "totalSystemComplexity": 8,
         "package": "App\\Card\\",
-        "pageRank": 0.29,
+        "pageRank": 0.26,
         "afferentCoupling": 1,
         "efferentCoupling": 0,
         "instability": 0,
@@ -2077,7 +2592,7 @@ var classes = [
         "totalDataComplexity": 14.67,
         "totalSystemComplexity": 46.67,
         "package": "App\\Card\\",
-        "pageRank": 0.04,
+        "pageRank": 0.03,
         "afferentCoupling": 2,
         "efferentCoupling": 1,
         "instability": 0.33,
@@ -2186,7 +2701,7 @@ var classes = [
         "totalDataComplexity": 19.33,
         "totalSystemComplexity": 55.33,
         "package": "App\\Card\\",
-        "pageRank": 0.07,
+        "pageRank": 0.06,
         "afferentCoupling": 1,
         "efferentCoupling": 0,
         "instability": 0,
