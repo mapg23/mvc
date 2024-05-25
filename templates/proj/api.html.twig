@@ -17,10 +17,46 @@
             <div class="api-route">
                 <h1>POST proj/api/draw</h1>
                 <p>
-                    Denna api drar ett kort från BlackJack decket.
+                    Denna api drar ett kort för ett specifikt sätte som skickas med post request.
                 </p>
-                <a href="{{ path('proj_api_draw') }}">Go to</a>
+                <form action="{{path('project_api_draw')}}" method="POST">
+                    <input type="hidden" name="seat_number" value="1">
+                    <input type="submit" value="Send">
+                </form>
             </div>
+
+            <div class="api-route">
+                <h1>GET proj/api/dealer</h1>
+                <p>
+                    Denna api returnerar husets hand, om huset har valt stand, samt resultat stängen.
+                </p>
+                <a href="{{ path('project_api_dealer') }}">Go to</a>
+            </div>
+
+            <div class="api-route">
+                <h1>GET proj/api/player</h1>
+                <p>
+                    Denna api returnerar alla spelarens händer och dess kort, resultat stängen samt om spelaren har valt stand.
+                </p>
+                <a href="{{ path('project_api_player') }}">Go to</a>
+            </div>
+
+            <div class="api-route">
+                <h1>GET proj/api/progress</h1>
+                <p>
+                    Denna api returnerar matchens status, vilka som vunnit, om matchen är i gång.
+                </p>
+                <a href="{{ path('project_api_match_details') }}">Go to</a>
+            </div>
+
+            <div class="api-route">
+                <h1>GET proj/api/stand</h1>
+                <p>
+                    Denna api sätter sätter boolen stand till true på alla seats.
+                </p>
+                <a href="{{ path('project_api_stand')}}">Go to</a>
+            </div>
+
         </div>
 
         </main>

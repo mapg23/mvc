@@ -160,8 +160,32 @@ class Game
         $this->seats[$number]->setTaken(true);
     }
 
+    public function hitAll()
+    {
+        $cards = [];
+
+        foreach($this->seats as $key => $seat) {
+            if (!$seat->getTaken() || $seat->getStand()) {
+                continue;
+            }
+            $card = $this->deal(1);
+            $seat->add($card);
+
+            $cards["seat_" . $key] = [
+                'number' => $card[0]->getNumber(),
+                'type' => $card[0]->getType(),
+            ];
+        }
+
+        return $cards;
+    }
+
     public function hit(int $number)
     {
+        if (!$this->seats[$number]->getTaken() || $this->seats[$number]->getStand()) {
+            return;
+        }
+
         $this->seats[$number]->add($this->deal(1));
     }
 
@@ -190,6 +214,40 @@ class Game
         return array_splice($this->deck, 1, $number);
     }
 
+    public function getDealer()
+    {
+        return $this->dealer->saveData();
+    }
+
+    public function getSeats()
+    {
+        return [
+            'seat_1' => $this->seats[1]->saveData(),
+            'seat_2' => $this->seats[2]->saveData(),
+            'seat_3' => $this->seats[3]->saveData(),
+        ];
+    }
+
+    public function getSpecificSeat(int $number)
+    {
+        $name = "seat_" . $number;
+        $seat = $this->seats[$number];
+        
+        $cards = [];
+        foreach($seat->getCards() as $card) {
+            $cards[] = [
+                'number' => $card->getNumber(),
+                'type' => $card->getType()
+            ];
+        }
+
+        return [
+            'seat' => $name,
+            'taken' => $seat->getTaken(),
+            'stand' => $seat->getStand(),
+            'cards' => $cards,
+        ]; 
+    }
 
     public function dataToTwig(): array
     {
@@ -200,6 +258,49 @@ class Game
             'dealer' => $this->dealer,
             'debug' => $this->dbg,
         ];
+    }
+
+    public function getMatchStatus()
+    {
+        $seatStatus = [];
+
+        foreach($this->seats as $seat) {
+            $res = "";
+            if (!$seat->getTaken()) {
+                continue;
+            }
+
+            $res = $seat->getResult();
+
+            if ($res == "") {
+                $res = "No result yet";
+            }
+
+            $seatStatus["seat_" . $seat->getIndex()] = [
+                'result' => $res,
+                'score' => $seat->getScore()
+            ];
+        }
+
+        return [
+            'Round started' => $this->inProgress,
+            'Game has ended' => $this->end,
+            'seats taken' => $seatStatus,
+        ];
+    }
+
+    public function makeAllStand()
+    {
+        $array = [];
+        foreach($this->seats as $key => $seat) {
+            if (!$seat->getTaken()) {
+                continue;
+            }
+            $seat->setStand(true);
+            $array["seat_" . $key] = $seat->getStand();
+        }
+
+        return $array;
     }
     
     public function dataToSave()
