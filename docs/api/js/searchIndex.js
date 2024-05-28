@@ -466,6 +466,41 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-ProductController.html#method_showProductByMinimumValue"
         },                {
+            "fqsen": "\\App\\Controller\\ProjectApiController",
+            "name": "ProjectApiController",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectApiController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectApiController\u003A\u003Aapi\u0028\u0029",
+            "name": "api",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectApiController.html#method_api"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectApiController\u003A\u003Adraw\u0028\u0029",
+            "name": "draw",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectApiController.html#method_draw"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectApiController\u003A\u003Adealer\u0028\u0029",
+            "name": "dealer",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectApiController.html#method_dealer"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectApiController\u003A\u003Aplayer\u0028\u0029",
+            "name": "player",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectApiController.html#method_player"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectApiController\u003A\u003AmatchStatus\u0028\u0029",
+            "name": "matchStatus",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectApiController.html#method_matchStatus"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectApiController\u003A\u003Astand\u0028\u0029",
+            "name": "stand",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectApiController.html#method_stand"
+        },                {
             "fqsen": "\\App\\Controller\\ProjectController",
             "name": "ProjectController",
             "summary": "",
@@ -473,12 +508,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AgetSessionData\u0028\u0029",
             "name": "getSessionData",
-            "summary": "",
+            "summary": "Metod\u0020to\u0020return\u0020session\u0020data.",
             "url": "classes/App-Controller-ProjectController.html#method_getSessionData"
         },                {
             "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AsaveSessionData\u0028\u0029",
             "name": "saveSessionData",
-            "summary": "",
+            "summary": "Metod\u0020to\u0020save\u0020data\u0020to\u0020session.",
             "url": "classes/App-Controller-ProjectController.html#method_saveSessionData"
         },                {
             "fqsen": "\\App\\Controller\\ProjectController\u003A\u003Aindex\u0028\u0029",
@@ -906,10 +941,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Project-Game.html#method___construct"
         },                {
-            "fqsen": "\\App\\Project\\Game\u003A\u003Ainit\u0028\u0029",
-            "name": "init",
+            "fqsen": "\\App\\Project\\Game\u003A\u003AgenerateDeck\u0028\u0029",
+            "name": "generateDeck",
             "summary": "",
-            "url": "classes/App-Project-Game.html#method_init"
+            "url": "classes/App-Project-Game.html#method_generateDeck"
         },                {
             "fqsen": "\\App\\Project\\Game\u003A\u003AplayRound\u0028\u0029",
             "name": "playRound",
@@ -951,20 +986,40 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Project-Game.html#method_stand"
         },                {
-            "fqsen": "\\App\\Project\\Game\u003A\u003AgenerateDeck\u0028\u0029",
-            "name": "generateDeck",
-            "summary": "",
-            "url": "classes/App-Project-Game.html#method_generateDeck"
-        },                {
             "fqsen": "\\App\\Project\\Game\u003A\u003Adeal\u0028\u0029",
             "name": "deal",
             "summary": "",
             "url": "classes/App-Project-Game.html#method_deal"
         },                {
+            "fqsen": "\\App\\Project\\Game\u003A\u003AgetDealer\u0028\u0029",
+            "name": "getDealer",
+            "summary": "",
+            "url": "classes/App-Project-Game.html#method_getDealer"
+        },                {
+            "fqsen": "\\App\\Project\\Game\u003A\u003AgetSeats\u0028\u0029",
+            "name": "getSeats",
+            "summary": "",
+            "url": "classes/App-Project-Game.html#method_getSeats"
+        },                {
+            "fqsen": "\\App\\Project\\Game\u003A\u003AgetSpecificSeat\u0028\u0029",
+            "name": "getSpecificSeat",
+            "summary": "",
+            "url": "classes/App-Project-Game.html#method_getSpecificSeat"
+        },                {
             "fqsen": "\\App\\Project\\Game\u003A\u003AdataToTwig\u0028\u0029",
             "name": "dataToTwig",
             "summary": "",
             "url": "classes/App-Project-Game.html#method_dataToTwig"
+        },                {
+            "fqsen": "\\App\\Project\\Game\u003A\u003AgetMatchStatus\u0028\u0029",
+            "name": "getMatchStatus",
+            "summary": "",
+            "url": "classes/App-Project-Game.html#method_getMatchStatus"
+        },                {
+            "fqsen": "\\App\\Project\\Game\u003A\u003AmakeAllStand\u0028\u0029",
+            "name": "makeAllStand",
+            "summary": "",
+            "url": "classes/App-Project-Game.html#method_makeAllStand"
         },                {
             "fqsen": "\\App\\Project\\Game\u003A\u003AdataToSave\u0028\u0029",
             "name": "dataToSave",
@@ -996,11 +1051,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Project-Game.html#property_end"
         },                {
-            "fqsen": "\\App\\Project\\Game\u003A\u003A\u0024dbg",
-            "name": "dbg",
-            "summary": "",
-            "url": "classes/App-Project-Game.html#property_dbg"
-        },                {
             "fqsen": "\\App\\Project\\Hand",
             "name": "Hand",
             "summary": "",
@@ -1025,6 +1075,11 @@ Search.appendIndex(
             "name": "getIndex",
             "summary": "",
             "url": "classes/App-Project-Hand.html#method_getIndex"
+        },                {
+            "fqsen": "\\App\\Project\\Hand\u003A\u003AsetCards\u0028\u0029",
+            "name": "setCards",
+            "summary": "",
+            "url": "classes/App-Project-Hand.html#method_setCards"
         },                {
             "fqsen": "\\App\\Project\\Hand\u003A\u003AgetCards\u0028\u0029",
             "name": "getCards",

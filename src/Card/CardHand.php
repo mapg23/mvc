@@ -66,9 +66,9 @@ class CardHand
         for ($i = 0; $i < $aceCount; $i++) {
             if ($score + 11 <= 21) {
                 $score += 11;
-            } else {
-                $score += 1;
+                continue;
             }
+            $score += 1;
         }
 
         return $score;

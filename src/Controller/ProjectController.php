@@ -11,7 +11,12 @@ use App\Project\Game;
 
 class ProjectController extends AbstractController
 {
-    public function getSessionData(SessionInterface $session)
+    /**
+     * Metod to return session data.
+     * @param SessionInterface $session.
+     * @return array <mixed>
+     */
+    public function getSessionData(SessionInterface $session): array
     {
         return [
             'seat_1' => $session->get('seat_1'),
@@ -23,7 +28,12 @@ class ProjectController extends AbstractController
         ];
     }
 
-    public function saveSessionData(SessionInterface $session, array $data)
+    /**
+     * Metod to save data to session.
+     * @param SessionInterface $session.
+     * @param array <mixed> $data.
+     */
+    public function saveSessionData(SessionInterface $session, array $data): void
     {
         $session->set('seat_1', $data['seat_1']);
         $session->set('seat_2', $data['seat_2']);
@@ -54,11 +64,10 @@ class ProjectController extends AbstractController
     #[Route("/proj/game", name: "project_game")]
     public function game(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $data = $this->getSessionData($session);
         $game = new Game($data);
-        
+
         $output = $game->dataToTwig();
         $saveData = $game->dataToSave();
 
@@ -71,8 +80,7 @@ class ProjectController extends AbstractController
     public function addSeat(
         int $number,
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $data = $this->getSessionData($session);
         $game = new Game($data);
         $game->takeSeat($number);
@@ -86,8 +94,7 @@ class ProjectController extends AbstractController
     public function hit(
         int $number,
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $data = $this->getSessionData($session);
         $game = new Game($data);
         $game->hit($number);
@@ -101,8 +108,7 @@ class ProjectController extends AbstractController
     public function stand(
         int $number,
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $data = $this->getSessionData($session);
         $game = new Game($data);
         $game->stand($number);
@@ -115,8 +121,7 @@ class ProjectController extends AbstractController
     #[Route("/proj/next_round", name: "project_next_round")]
     public function nextRound(
         SessionInterface $session
-    ): Response 
-    {
+    ): Response {
         $data = $this->getSessionData($session);
         $game = new Game($data);
         $game->playRound();
@@ -129,8 +134,7 @@ class ProjectController extends AbstractController
     #[Route("/proj/new_game", name: "project_new_game")]
     public function newGame(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $session->clear();
         return $this->redirectToRoute('project_game');
     }

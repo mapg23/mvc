@@ -13,7 +13,6 @@ use App\Controller\ProjectController;
 
 class ProjectApiController extends AbstractController
 {
-
     #[Route("/proj/api", name: "project_api")]
     public function api(): Response
     {
@@ -24,7 +23,7 @@ class ProjectApiController extends AbstractController
     public function draw(
         Request $request,
         SessionInterface $session
-    ){
+    ): Response {
         $requestData = $request->request->all();
         $projectController = new ProjectController();
         $gameData = $projectController->getSessionData($session);
@@ -45,7 +44,7 @@ class ProjectApiController extends AbstractController
     }
 
     #[Route("/proj/api/dealer", name : "project_api_dealer")]
-    public function dealer(SessionInterface $session) : Response
+    public function dealer(SessionInterface $session): Response
     {
         $projectController = new ProjectController();
         $gameData = $projectController->getSessionData($session);
@@ -63,7 +62,7 @@ class ProjectApiController extends AbstractController
     }
 
     #[Route("/proj/api/player", name : "project_api_player")]
-    public function player(SessionInterface $session) : Response
+    public function player(SessionInterface $session): Response
     {
         $projectController = new ProjectController();
         $gameData = $projectController->getSessionData($session);
