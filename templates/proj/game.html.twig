@@ -17,7 +17,7 @@
         <h3>{{dealer.getScore()}}</h3>
         <div class="cards">
             {% for card in dealer.getCards() %}
-                    <img class="poker-cards" src="/img/cards/{{card.getImage()}}" alt="card">
+                    <img class="poker-cards" src="{{ asset('img/cards/' ~ card.getImage()) }}" alt="card">
             {% endfor %}
         </div>
     </div>
@@ -42,7 +42,7 @@
             <h3>Score: {{hand.getScore()}}</h3>
             <div class="cards">
                 {% for card in hand.getCards() %}
-                    <img class="poker-cards" src="/img/cards/{{card.getImage()}}" alt="card">
+                    <img class="poker-cards" src="{{ asset('img/cards/' ~ card.getImage()) }}" alt="card">
                 {% endfor %}
             </div>
 
